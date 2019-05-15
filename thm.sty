@@ -1,0 +1,69 @@
+% Author: Maxim Barmin, 17/03/2019
+% Update 07/05/2019. Added proof(s)* and (n)props(*) and updated thm*
+
+\usepackage{multicol}
+\usepackage{graphicx}
+
+\newcounter{glava}
+\newcounter{theor}[glava]
+\newcounter{lemma}[glava]
+\newcounter{defin}[glava]
+\newcounter{propos}[glava]
+\newcounter{stat}[glava]
+\newcounter{notee}[stat]
+\newcounter{core}[stat]
+\newcounter{xcae}[glava]
+
+\newcommand{\n}{\par\vspace{3.5pt}}
+
+% thm       Теорема
+% thm*      Теорема (б/д)
+% nthm      Теорема (именная)
+% lem       Лемма
+% defn      Определение
+% prop      Утверждение
+% note      Замечание
+% cor       Следствие
+% exmp      Пример
+% xca       Упражнение
+% Нумерация во всех свойствах через \item
+% props     Свойства
+% nprops    Свойства (с названием)
+% props*    Свойства (б/д)
+% proof     Доказательство
+% proof*    Доказательство без точки и конца доказательства
+% proofs*	Доказательства без точки и конца доказательства
+% noproof	Без доказательства
+% solution  Решение
+
+\newenvironment{thm}{\n\stepcounter{stat}\addtocounter{theor}{1}\textbf{\textsc{Теорема \arabic{theor}. }}}{\par}
+\newenvironment{thm*}{\n\stepcounter{stat}\addtocounter{theor}{1}\textbf{\textsc{Теорема \arabic{theor}. }}\textit{\texttt{(б/д)}}}{\par}
+\newenvironment{nthm}[1][]{\n\stepcounter{stat}\addtocounter{theor}{1}\textbf{\textsc{Теорема \arabic{theor}. }}\textit{(#1).}}{\par}
+\newenvironment{lem}{\n\stepcounter{stat}\addtocounter{lemma}{1}\textbf{\textsc{Лемма \arabic{lemma}.}}}{\par}
+\newenvironment{defn}{\n\stepcounter{stat}\addtocounter{defin}{1}\textbf{\textsc{Определение \arabic{defin}.}}}{\par}
+\newenvironment{prop}{\n\stepcounter{stat}\addtocounter{propos}{1}\textbf{\textsc{Утверждение \arabic{propos}.}}}{\par}
+\newenvironment{note}{\n\addtocounter{notee}{1}\textbf{\textsc{Замечание \arabic{notee}.}}}{\par}
+\newenvironment{cor}{\n\addtocounter{core}{1}\textbf{\textsc{Следствие \arabic{core}.}}}{\par}
+\newenvironment{cor*}{\n\addtocounter{core}{1}\textbf{\textsc{Следствие \arabic{core}.}}}{\par}
+\newenvironment{exmp}{\n\textbf{\textsc{Пример.}}}{\par}
+\newenvironment{xca}{\n\stepcounter{stat}\addtocounter{xcae}{1}\textbf{\textsc{Упржнение \arabic{xcae}.}}}{\par}
+
+\newenvironment{props}{\n\textbf{\textsc{Свойства. }}\begin{enumerate}[label=\arabic*)]}{\end{enumerate}\par}
+\newenvironment{nprops}[1][]{\n\textbf{\textsc{Свойства. }}\textit{(#1).}\begin{enumerate}[label=\arabic*)]}{\end{enumerate}\par}
+\newenvironment{props*}{\n\textbf{\textsc{Свойства. }}\textit{\texttt{(б/д)}}\begin{enumerate}[label=\arabic*)]}{\end{enumerate}\par}
+
+\renewenvironment{proof}{\n\textsc{Доказательство.}}{\hspace{\stretch{1}}\qedsymbol\par}
+\newenvironment{proof*}{\n\textsc{Доказательство}}{\hspace{\stretch{1}}\par}
+\newenvironment{proofs*}{\n\textsc{Доказательства}}{\hspace{\stretch{1}}\par}
+\newenvironment{noproof}{\n\textsc{Без доказательства.}}{\par}
+\newenvironment{solution}{\n\textsc{Решение.}}{\hspace{\stretch{1}}\qedsymbol\par}
+
+%\newtheorem{thm}{Теорема}
+%\newtheorem{lem}{Лемма}
+%\newtheorem{defn}{Определение}
+%\newtheorem{prop}{Утверждение}
+%\newtheorem*{note}{Замечание}
+%\newtheorem*{cor*}{Следствие}
+%\newtheorem{cor}{Следствие}
+%\newtheorem*{exmp}{Пример}
+%\newtheorem{xca}{Упражнение}

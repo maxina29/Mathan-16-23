@@ -1,0 +1,146 @@
+% заТеХано
+\documentclass[a4paper,10pt]{article}
+
+\include{hat}
+
+\def\jeolmlectnum{21}
+\def\jeolmdate{25 апреля 2019}
+\def\jeolmlectionname{Площадь поверхности. Понятие поверхностного интеграла.}
+\def\jeolmtex{Ма$\xi$м}
+\usepackage{mathrsfs}
+\begin{document}
+	
+	\jeolmnewheader
+	
+	Пусть гладкая ограниченная двусторонняя поверхность $\Phi$ без особых точек задана уравнениями
+	\begin{equation}\label{eq:1}
+		x = x(u, v), y=y(u, v), z = z(u, v)
+	\end{equation}
+	$(u, v) \in G, G \subset \R^2$ --- замкнутое связное квадрируемое множество. 
+	
+	В силу леммы 2 предыдущей лекции $\exists \delta > 0$, такое, что поверхность $\Phi$ можно разбить конечным числом гладких кривых на части $\Phi_i$ размера меньше $\delta$ так, чтобы каждая часть однозначно проектировалась на касательную плоскость, проведенную в любой точке $\Phi_i$.
+	
+	\begin{defn}
+		Число $\Delta =$ максимальному размеру участков $\Phi_i$ называется \textit{диаметром разбиения}.
+	\end{defn}
+	
+	\begin{defn}
+		Выберем на каждом участке $\Phi_i$ точку $M_i$ произвольным образом и спроецируем $\Phi_i$ на касательную плоскость в точке $M_i$.
+
+		Пусть $\sigma_i$ --- площадь получившейся проекции. Число $\sigma$ называется \textit{пределом сумм} $\sum\limits_i \sigma_i$ при $\Delta \to 0$, если $\forall \epsilon > 0 ~ \exists \delta = \delta (\epsilon) > 0$ такое, что любое разбиение с диаметром $\Delta < \delta$, независимо от выбора точек $M_i : \left|\sigma - \sum\limits_i \sigma_i\right| < \epsilon$.
+	
+		Поверхность $\Phi$, для которой такой предел существует, называется \textit{квадрируемой}; число $\sigma$ называется \textit{площадью поверхности} $\Phi$.
+	\end{defn}
+
+	% сапог Шварца
+	
+	\begin{thm}\label{thm:1}
+		Пусть $\Phi$ --- гладкая двусторонняя ограниченная поверхность без особых точек, задана уравнениями \eqref{eq:1} на $G$; $G$ --- замкнутое линейно связное квадрируемое множество.
+		
+		Тогда $\Phi$ --- квадрируемая поверхность, причем ее площадь $\sigma$ вычисляется по формуле
+		\begin{equation}\label{eq:2}
+			\sigma = \iint\limits_G \left| \left[ \dfrac{\d \vec{r}}{\d u}, \dfrac{\d \vec{r}}{\d v} \right] \right| dudv
+		\end{equation}
+		$\vec{r}\,(u, v) = \{x(u, v), y(u, v), z(u, v)\}$
+	\end{thm}
+
+	\begin{proof}
+		Обозначим через $J$ величину интеграла в правой части \eqref{eq:2}.
+		
+		Почкольку подынтегральная функция непрерывна (т.к. $\Phi$ --- гладкая поверхность), то интеграл существует. Пусть $\epsilon > 0$. В силу лемм $2$ и $3$ предыдущей лекции $\exists \delta = \delta(\epsilon) > 0$, такое, что:
+		\begin{enumerate}
+			\item Любая часть поверхности размера меньше $\delta$ однозначно проецируется на касательную плоскость, проведённую в любой точке этой части.
+			\item Если размер $\Phi_i$ меньше $\delta$, то $\forall M_1, M_2 \in \Phi_i ~ \cos \gamma = 1 - \alpha$, где \\ $\gamma = \angle(\vec{n}(M_1), \vec{n}(M_2))$; $0 \le \alpha < \min\{1, \drobb{\epsilon}{J}\}$.
+		\end{enumerate}
+		Пусть есть разбиение $\Phi$ на участке $\Phi_i$, $\Delta < \delta$. Выберем произвольным образом $M_i \in \Phi_i$, спроецируем $\Phi_i$ на касательную плоскость в точке $M_i$ и вычислим площадь $\sigma_i$ полученной проекции. Введём систему координат так, чтобы $Oz \parallel \vec{n}(M_i)$; $Ox$ и $Oy$ лежали в касательной плоскости. Тогда $$\left[ \dfrac{\d \vec{r}}{\d u}, \dfrac{\d \vec{r}}{\d v} \right] = \left| 
+		\begin{matrix}
+		\vec{i} & \vec{j} & \vec{k} \\[.1em]
+		\dfrac{\d x}{\d u} & \dfrac{\d y}{\d u} & \dfrac{\d z}{\d u} \\[.7em]
+		\dfrac{\d x}{\d v} & \dfrac{\d y}{\d v} & \dfrac{\d z}{\d v}
+		\end{matrix} 
+		\right| = \{A, B, C\},$$
+		где $A = \left| \begin{matrix} y_u' & z_u' \\ y_v' & z_v' \end{matrix} \right|$, $B = \left| \begin{matrix} z_u' & x_u' \\ z_v' & x_v' \end{matrix} \right|$, $C = \left| \begin{matrix} x_u' & y_u' \\ x_v' & y_v' \end{matrix} \right|$.
+		
+		Заметим, что если $\gamma_{{}_M} = \angle(\vec{n}(M), \vec{n}(M_i)), M \in \Phi_i$, то  
+		$$\cos \gamma_{{}_M} = \dfrac{(\vec{n}(M), \{0, 0, 1\})}{|\vec{n}(M)|} \hm{=} \left. \dfrac{C}{|[r_u', r_v']|} \right|_M$$
+		Поскольку $\cos \gamma_{{}_M} > 0\Rightarrow C > 0$.
+		
+		Пусть $\widetilde{G}_i$ --- проекция $\Phi_i$ на касательную плоскость в точке $M_i$. Тогда её площадь 
+		\begin{multline*}
+		\sigma_i = \iint\limits_{\widetilde{G}_i} 1\,dxdy = \left| \begin{matrix} x = x(u, v) \\ y = y(u, v) \end{matrix} \right| = \iint\limits_{G_i} \bigg| \underbrace{\dfrac{D(x, y)}{D(u, v)}}_{C>0} \bigg| \,dudv 
+		= \\ =
+		\iint\limits_{G_i} \cos \gamma_{{}_M} \cdot \Big| [r_u', r_v'] \Big| \,dudv = 
+		\left( \begin{matrix} \textup{1-ая теорема о среднем} \\ \cos \gamma_{{}_M} \textup{ непрерывен} \end{matrix} \right) 
+		= \\ = 
+		\cos \gamma_{{}_{M^*}} \cdot \iint\limits_{G_i} \Big| [r_u', r_v'] \Big| \,dudv = (1 - \alpha) \cdot \iint\limits_{G_i} \Big| [r_u', r_v'] \Big| \,dudv
+		\end{multline*}
+		Отсюда $\sum\limits_i \sigma_i = \underbrace{\sum\limits_i \iint\limits_{G_i} \Big| [r_u', r_v'] \Big| \,dudv}_{J} - \alpha \cdot J \Rightarrow$ \\
+		$\left| J - \sum\limits_i \sigma_i \right| = \alpha \cdot J < (\textup{в силу выбора }\alpha) < \dfrac{\epsilon}{J} \cdot J = \epsilon = \lim\limits_{\Delta \to 0} \sum\limits_i \sigma_i \Rightarrow J = \sigma$
+	\end{proof}
+	
+	\begin{note}
+		Обозначим $E = \left| \dfrac{\d \vec{r}}{\d u} \right|^2$; $D = \left| \dfrac{\d \vec{r}}{\d v} \right|^2$; $F = \left( \dfrac{\d \vec{r}}{\d u}, \dfrac{\d \vec{r}}{\d v} \right)$. 
+		
+		Поскольку для любых векторов $\vec{a}, \vec{b}$: $$\underbrace{[\vec{a}, \vec{b}]^2}_{|\vec{a}|^2 \cdot |\vec{b}|^2 \cdot \sin^2 \alpha} + \underbrace{(\vec{a}, \vec{b})^2}_{|\vec{a}|^2 \cdot |\vec{b}|^2 \cdot \cos^2 \alpha} = |\vec{a}|^2 + |\vec{b}|^2  \Rightarrow \left| \left[ \dfrac{\d \vec{r}}{\d u}, \dfrac{\d \vec{r}}{\d v} \right] \right| = \sqrt{ED - F^2}$$
+		Тогда площадь поверхности вычисляется по формуле 
+		\begin{equation}\label{eq:3}
+			\sigma = \iint\limits_G \sqrt{ED - F^2}\, dudv
+		\end{equation}
+	\end{note}
+	
+	\begin{exmp}
+		Вычислим площадь поверхности сферы радиуса $R$.
+	\end{exmp}
+	\begin{solution}
+		Рассмотрим полусферу: $\{(x, y, z) \mid x^2 + y^2 + z^2 = R^2, z \ge 0\}$. Запишем параметризацию в сферических координатах: $\begin{cases}
+		x = R \cos \phi \sin \psi; \\
+		y = R \sin \phi \sin \psi; \\
+		z = R \cos \psi.
+		\end{cases}$ \\
+		$0 \le \phi < 2\pi$, $0 \le \psi \le \drobb{\pi}{2}$
+		
+		$\dfrac{\d \vec{r}}{\d \phi} = \{-R \sin \phi \sin \psi, R \cos \phi \sin \psi, 0\} \Rightarrow E = R^2 \sin^2 \psi$
+		
+		$\dfrac{\d \vec{r}}{\d \psi} = \{R \cos \phi \cos \psi, R \sin \phi \cos \psi, -R \sin \psi \} \Rightarrow D = R^2 \cos^2 \psi + R^2 \sin^2 \psi = R^2$
+		
+		$F = R^2 \cdot (0) = 0 \Rightarrow \sqrt{ED - F^2} = R^2 \sin \psi \Rightarrow$ 
+		
+		$\dfrac{1}{2}S_{\textup{пов. сф.}} = \iiint\limits_G \sqrt{ED - F^2}\, d\phi d\psi = \int\limits_0^{2\pi} \int\limits_0^{\drobb{\pi}{2}} R^2 \sin \psi\, d\psi d\phi = R^2 \cdot 2\pi \cdot (-\cos \psi) \big|_{0}^{\drobb{\pi}{2}} = 2\pi R^2$
+		
+		$\Rightarrow \fbox{$S_{\textup{пов. сферы}} = 4\pi R^2$}$
+	\end{solution}
+	
+	\begin{defn}
+		Пусть поверхность $\Phi$ удовлетворяет условиям теоремы 1, на ней определены непрерывные функции $f(x, y, z)$, $P(x, y, z)$, $Q(x, y, z)$, $R(x, y, z)$. Возьмём разбиение поверхности $\Phi$ на участки $\Phi_i$ гладкими кривыми; размеры всех $\Phi_i$ меньше $\delta$, где $\delta$ --- из леммы 2 предыдущей лекции.
+		
+		Возьмём произвольные $M_i \in \Phi_i$ и составим суммы: $$\Sigma_1 = \sum\limits_i f(M_i) \cdot \sigma_i$$ ($\sigma_i$ --- площадь проекции $\Phi_i$ на касательную плоскость в точке $M_i$)
+		
+		Пусть $\underbrace{\vec{n}(M_i)}_{\begin{smallmatrix} \textup{единичная} \\ \textup{нормаль} \end{smallmatrix}} \!\!\!\! = \{\cos X_i, \cos Y_i, \cos Z_i\}$
+		$$\Sigma_2 = \sum\limits_i P(M_i) \cdot \cos X_i \cdot \sigma_i;$$
+		$$\Sigma_3 = \sum\limits_i Q(M_i) \cdot \cos Y_i \cdot \sigma_i;$$
+		$$\Sigma_4 = \sum\limits_i R(M_i) \cdot \cos Z_i \cdot \sigma_i.$$
+	\end{defn}
+	
+	\begin{defn}
+		\textit{Поверхностным интегралом 1-го рода} называется число $I_1$, такое, что $\forall \epsilon > 0 ~ \exists \delta(\epsilon) > 0$, такое, что для любого разбиения с диаметром $\Delta < \delta(\epsilon)$, для любого выбора точек $M_i : |\Sigma_1 - I_1| < \epsilon$.
+		
+		Обозначение: $\iint\limits_\Phi f(M) \!\!\!\!\! \underbrace{d\sigma}_{\begin{smallmatrix} \textup{элемент} \\ \textup{площади} \end{smallmatrix}}$
+		
+		\textit{Поверхностными интегралами 2-го рода} называются числа $I_k$, $k = 2, 3, 4$, такие, что $\forall \epsilon > 0 ~ \exists \delta(\epsilon) > 0$, такое, что для любого разбиения с диаметром $\Delta < \delta(\epsilon)$, для любого выбора точек $M_i : |\Sigma_k - I_k| < \epsilon$. 
+		
+		Обозначение: $\iint\limits_\Phi P(M) \cdot \cos X \, d\sigma$ и \!т.\,д.
+		
+		Сумма $I_2 + I_3 + I_4$ называется \textit{общим поверхностным интегралом 2-го рода}.
+		
+		Обозначение: $\iint\limits_\Phi (\vec{A}, \vec{n}) \, d\sigma$, где $\vec{A} = \{P, Q, R\}$, $\vec{n} = \{\cos X, \cos Y, \cos Z \}$ --- вектор единичной нормали.
+	\end{defn}
+	
+	\textbf{\textsc{Свойства:}}
+	\begin{enumerate}[label = \arabic*)]
+		\item Интеграл 1-го рода не зависит от направления нормали; интегралы 2-го рода меняют знак при смене ориентации вектора нормали;
+		\item Интеграл 1-го рода и общий интеграл 2-го рода инвариантны относительно выбора системы координат;
+		\item Интеграл 1-го рода --- масса нагруженной поверхности $\Phi$ с плотностью распределения масс $f(x, y, z)$. \\ 
+		Общий интеграл 2-го рода --- поток вектора $A$ через поверхность $\Phi$.
+	\end{enumerate}
+	% заТеХано
+\end{document}

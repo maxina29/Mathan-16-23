@@ -1,0 +1,106 @@
+\usepackage[T2A]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+
+\definecolor{linkcolor}{HTML}{000000}
+\definecolor{urlcolor}{HTML}{000000}
+
+\hypersetup{pdfstartview=FitH, linkcolor=linkcolor,
+urlcolor=urlcolor, colorlinks=true}
+
+\usepackage{amssymb,amsthm,amsmath}
+
+\parindent=0.5cm
+\parskip=0.1cm
+
+\tolerance=400
+
+\binoppenalty=10000
+\relpenalty=10000
+
+\theoremstyle{definition}
+
+\renewenvironment{text}{\par}{\par}
+
+\newcommand{\intl}{\mathop{\int}\limits}
+\newcommand{\liml}{\mathop{\lim}\limits}
+\newcommand{\suml}{\mathop{\sum}\limits}
+\newcommand{\supl}{\mathop{\sup}\limits}
+\newcommand{\infl}{\mathop{\inf}\limits}
+\newcommand{\longrightarrowl}{\mathop{\longrightarrow}\limits}
+
+\newcommand{\Bo}{{\raisebox{0.2ex}{$\stackrel{\circ}{B}$}}{}}
+
+\renewcommand{\le}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+
+\def\N{{\mathbb N}}
+\def\Z{{\mathbb Z}}
+\def\R{{\mathbb R}}
+\def\Q{{\mathbb Q}}
+\def\C{{\mathbb C}}
+
+\renewcommand{\Re}{\operatorname{Re}}
+\renewcommand{\Im}{\operatorname{Im}}
+
+\def\arsh{\operatorname{arsh}}
+\def\arch{\operatorname{arch}}
+\def\arth{\operatorname{arth}}
+\def\arcth{\operatorname{arcth}}
+
+
+\def\bydef{\operatorname{def}}
+
+\usepackage{jeolm}
+\usepackage{jeolm-groups}
+\usepackage{thm}
+
+%\usepackage{anyfontsize}
+%\usepackage{upgreek}
+\AtBeginDocument{\swapvar{phi}\swapvar{epsilon}\swapvar{nothing}}
+\AtBeginDocument{\swapvar[up]{phi}\swapvar[up]{epsilon}}
+\usepackage{parskip}
+%\pagestyle{empty}
+
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+	{\hbox{$\mathsurround=0pt #1$}}{}} % Перенос знаков в формулах (по Львовскому)
+
+\usepackage{geometry}
+\geometry{a5paper,portrait,vmargin={2em,2em},hmargin={2em,2em}}
+
+%\usepackage{pgfpages}
+%\pgfpagesuselayout{resize to}[a4paper]
+
+\def\jeolmsubject{Математический анализ}
+\def\jeolmlector{Садовничая Инна Викторовна}
+\def\jeolmfaculty{ФКИ МГУ, 2 семестр}
+\def\jeolmurl{Место для вашей рекламы}
+\def\jeolmtex{Кириил}
+
+%\AtBeginDocument{\fontsize{9.00}{10.80}\selectfont}
+% (по умолчанию 10.00 и 12.00 соответственно)
+
+\def\qedsymbol{$\blacksquare$}
+\def\d{\partial}
+\newcommand{\drobb}[2]{\ensuremath{{}^{#1}\!/_{#2}}}
+\usepackage{ upgreek }
+\def\sigmaf{\sigma_{\!\!{}_f}}
+\def\hhline{\noindent\rule{\textwidth}{0.5pt}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][\arraystretch]{%
+	\edef\arraystretch{#1}%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{*\c@MaxMatrixCols c}}
+\makeatother
+
+\def\grad{\mathop{\operatorname{g}\!\vec{\operatorname{ra}}\!\operatorname{d}}}
+\def\div{\mathop{\operatorname{div}}}
+\def\rot{\operatorname{\mathop{rot}}}
+\usepackage{wrapfig}
+\usepackage{asymptote}

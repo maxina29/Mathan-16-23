@@ -1,0 +1,162 @@
+% заТеХано
+\documentclass[a4paper,10pt]{article}
+
+\include{hat}
+
+\def\jeolmlectnum{22}
+\def\jeolmdate{29 апреля 2019}
+\def\jeolmlectionname{Вычисление поверхностных интегралов.}
+\def\jeolmtex{Ма$\xi$м}
+\begin{document}
+	
+	\jeolmnewheader
+	
+	\begin{equation}\label{eq:1}
+	x = x(u, v), y=y(u, v), z = z(u, v), (u, v) \in G
+	\end{equation}
+	
+	\begin{thm}
+		Пусть $\Phi$ ---гладкая ограниченная двусторонняя поверхность без особых точек, заданная функциями \eqref{eq:1}; $G$ --- квадрируемое замкнутое множество. Тогда поверхностные интегралы существуют и удовлетворяют соотношениям: (функции $f, P, Q, R$ непрерывны на $\Phi$)
+		\begin{equation}\label{eq:2}
+			\iint\limits_\Phi f(M) \, d\sigma = \iint\limits_G f(x(u, v), y(u, v), z(u, v)) \cdot \sqrt{ED - F^2} \, dudv
+		\end{equation}
+		\begin{equation}\label{eq:3}
+		\iint\limits_\Phi P(M) \cdot \cos X \, d\sigma = \iint\limits_G P(x(u, v), y(u, v), z(u, v)) \cdot \cos X \cdot \sqrt{ED - F^2} \, dudv
+		\end{equation}
+		\begin{equation}\label{eq:4}
+		\iint\limits_\Phi Q(M) \cdot \cos Y \, d\sigma = \iint\limits_G Q(x(u, v), y(u, v), z(u, v)) \cdot \cos Y \cdot \sqrt{ED - F^2} \, dudv
+		\end{equation}
+		\begin{equation}\label{eq:5}
+		\iint\limits_\Phi R(M) \cdot \cos Z \, d\sigma = \iint\limits_G R(x(u, v), y(u, v), z(u, v)) \cdot \cos Z \cdot \sqrt{ED - F^2} \, dudv
+		\end{equation}
+	\end{thm}
+	
+	\begin{proof}
+		Докажем формулу \eqref{eq:2}, остальные аналогично. Вспомним, что $\vec{r}(u, v) = \{x(u, v), y(u, v), z(u, v)\}$; $E = \left| \dfrac{\d \vec{r}}{\d u} \right|^2$; $D = \left| \dfrac{\d \vec{r}}{\d v} \right|^2$; $F = \left( \dfrac{\d \vec{r}}{\d u}, \dfrac{\d \vec{r}}{\d u} \right)$. \\
+		Поскольку подынтегральная функция в правой части \eqref{eq:2} непрерывна, то интеграл существует. Функция $f$ непрерывна на $\Phi \Rightarrow$ равномерно непрерывна. Возьмём $\epsilon > 0$. $\exists \delta = \delta(\epsilon)$, такое, что $\forall M_1, M_2 \in \Phi, \rho(M_1, M_2) < \delta : |f(M_1) - f(M_2)| < \drobb{\epsilon}{\sigma}$, где $\sigma$ --- площадь поверхности $\Phi$, $J$ --- величина интеграла в правой части \eqref{eq:2}. 
+		
+		Тогда для любого разбиения $\Phi$ с диаметром $\Delta < \delta$, для любого выбора точек $M_i : $
+		\begin{multline*}
+		|\Sigma_1 - J| = \left| \sum\limits_i f(M_i) \cdot \sigma_i - \iint\limits_G f(x(u, v), y(u, v), z(u, v)) \cdot \sqrt{ED - F^2} \, dudv \right| 
+		=\\=
+		\bigg| \sum\limits_i f(M_i) \cdot \mspace{-50mu} \underbrace{\sigma_i}_{\begin{smallmatrix} \iint\limits_{G_i} \sqrt{ED - F^2} \, dudv\\[-0.7ex] \textup{(ф-ла (3) пред. лекции)} \end{smallmatrix}} \mspace{-50mu} - \sum\limits_i \iint\limits_{G_i} f(M) \sqrt{ED - F^2} \, dudv \bigg| 
+		=\\= 
+		\left| \sum\limits_i \iint\limits_{G_i} (f(M_i) - f(M)) \cdot \sqrt{ED - F^2} \, dudv \right| 
+		<\\< 
+		\dfrac{\epsilon}{\sigma} \cdot \sum\limits_i \iint\limits_{G_i} \sqrt{ED - F^2} \, dudv = \dfrac{\epsilon}{\sigma} \cdot \iint\limits_G \sqrt{ED - F^2} \, dudv = \epsilon
+		\end{multline*}
+		Значит, по определению: $J = \lim\limits_{\Delta \to 0} \Sigma_1 \Rightarrow$ справедлива формула \eqref{eq:2}.
+	\end{proof}
+	
+	\begin{cor}
+		Пусть поверхность $\Phi$ является графиком функции $z = z(x, y)$, $(x, y) \in G$, $z \in C^1(G)$. Выберем направление нормали так, чтобы $\angle(\vec{n}(M), Oz) < \drobb{\pi}{2}$, $M \in \Phi$. Тогда интеграл $2$-го рода $$\iint\limits_\Phi R(M) \cos Z \, d\sigma = \iint\limits_G R(x, y, z(x, y)) \, dxdy$$
+	\end{cor}
+	
+	\begin{proof}
+		В данном случае параметризация имеет вид: $x = x$, $y = y$, $z = z(x, y)$. Тогда $\dfrac{\d \vec{r}}{\d x} = \{1, 0, z'_x\}$; $\dfrac{\d \vec{r}}{\d y} = \{0, 1, z'_y\}$; $\left[ \dfrac{\d \vec{r}}{\d x}, \dfrac{\d \vec{r}}{\d y} \right] = \{-z'_x, -z'_y, 1\} \Rightarrow$ $\vec{n}(M) = \left\{ -\dfrac{z'_x}{\sqrt{1 + (z'_x)^2 + (z'_y)^2}}, -\dfrac{z'_y}{\sqrt{1 + (z'_x)^2 + (z'_y)^2}}, \dfrac{1}{\sqrt{1 + (z'_x)^2 + (z'_y)^2}} \right\}$. \\ 
+		$\cos Z = (\{0, 0, 1\}, \vec{n}(M)) = \dfrac{1}{\sqrt{1 + (z'_x)^2 + (z'_y)^2}}$\\
+		$E = \left| \dfrac{\d \vec{r}}{\d x} \right|^2 = 1 + (z'_x)^2$; $D = \left| \dfrac{\d \vec{r}}{\d y} \right|^2 = 1 + (z'_y)^2$; $F = \left( \dfrac{\d \vec{r}}{\d x}, \dfrac{\d \vec{r}}{\d y} \right) = z'_xz'_y \Rightarrow$ \\
+		$\sqrt{ED - F^2} = \sqrt{1 + (z'_x)^2 + (z'_y)^2 + (z'_x)^2(z'_y)^2 - (z'xz'y)^2} = \sqrt{1 + (z'_x)^2 + (z'_y)^2}$. \\
+		Значит,
+		\begin{multline*}
+		\iint\limits_\Phi R(M) \cos Z \, d\sigma 
+		=\\= 
+		\iint\limits_G R(x, y, z(x, y)) \cdot \dfrac{1}{{\sqrt{1 + (z'_x)^2 + (z'_y)^2}}} \cdot {\sqrt{1 + (z'_x)^2 + (z'_y)^2}} \, dxdy 
+		=\\= 
+		\iint\limits_G R(x, y, z(x, y)) \, dxdy
+		\end{multline*}
+	\end{proof}
+	
+	Аналогично можно доказать формулы для других поверхностных интегралов $2$-го рода.
+	
+	Общий интеграл $2$-го рода записывается в виде $\iint\limits_G Pdydz + Qdxdz + Rdxdy$
+	
+	\begin{exmp}
+		Вычислим интеграл $\iint\limits_\Phi (x^2 + y^2) \, d\sigma$, где $\Phi$ --- граница $\sqrt{x^2 + y^2} \le z \le 1$.
+	\end{exmp}
+	
+	\begin{solution}
+		$\Phi_1$ --- поверхность конуса, $\Phi_2$ --- <<крышка>> конуса\\
+		% рисунок
+		На $\Phi_1: z = \sqrt{x^2 + y^2}$, $z'_x = \dfrac{x}{\sqrt{x^2 + y^2}}$, $z'_y = \dfrac{y}{\sqrt{x^2 + y^2}}$. $G = \{x^2 + y^2 \le 1\}$.\\
+		$\sqrt{ED - F^2} = \sqrt{1 + (z'_x)^2 + (z'_y)^2} = \sqrt{2}$. 
+		\begin{multline*}
+		J_1 = \iint\limits_{\Phi_1} (x^2 + y^2) \, d\sigma = \iint\limits_G (x^2 + y^2) \cdot \sqrt{2} \, dxdy = \left| \begin{matrix}
+		x = r \cos \phi \\
+		y = r \sin \phi
+		\end{matrix} \right| =\\= \sqrt{2} \int\limits_0^{2\pi} \int\limits_0^1 r^2 \cdot r \, dr \, d\phi = \sqrt{2} \cdot 2\pi \cdot \left. \dfrac{r^4}{4} \right|_0^1 = \dfrac{\pi \sqrt{2}}{2}
+		\end{multline*}
+		На $\Phi_2: z = 1 \Rightarrow z'_x = z'_y = 0 \Rightarrow \sqrt{1 + (z'_x)^2 + (z'_y)^2} = 1$.\\
+		$J_2 = \iint\limits_{\Phi_2} (x^2 + y^2) \, d\sigma = \iint\limits_G (x^2 + y^2) \, dxdy = \dfrac{\pi}{2} \Rightarrow \iint\limits_\Phi (x^2 + y^2) \, dxdy = \dfrac{\pi}{2}(\sqrt{2} + 1)$
+	\end{solution}
+	
+	\header{Скалярные и векторные поля.}
+	
+	\begin{defn}
+		Пусть $D \subset \R^3$ --- область. Говорят, что в $D$ задано \textit{скалярное поле} $u(M)$, $M \in D$, если каждой точке $M \in D$ ставятся в соответствие число $u(M)$ (т.е. $u : D \to \R$ --- функция).
+		
+		В области $D$ задано \textit{векторное поле} $\vec{a}(M)$, если каждой точке $M \in D$ ставится в соответствие вектор $\vec{a}(M) = \{a_1, a_2, a_3\}$.
+	\end{defn}
+	
+	\begin{exmp}
+		Пусть $\vec{E}(M)$ --- напряженность электрического поля, создаваемого единичным отрицательным зарядом, помещенным в начало координат. \\ Тогда $\left| \vec{E}(M) \right| = \dfrac{1}{\rho^2}$, $\rho = \rho(M, O) = \sqrt{x^2 + y^2 + z^2}$, вектор $\vec{E}(M)$ непрерывен от $M$ к $(0, 0, 0)$. Значит, $\vec{E}(M) = \left\{ -\dfrac{x}{\rho^3}, -\dfrac{y}{\rho^3}, -\dfrac{z}{\rho^3} \right\}$.
+	\end{exmp}
+	
+	\begin{defn}
+		Скалярное поле $u$ \textit{дифференцируемо
+		} в точке $M \in D$, если его приращение $\Delta u = u(x + \Delta x, y + \Delta y, z + \Delta z) - u(x, y, z)$ представимо в виде 
+		\begin{equation}\tag{*}\label{eq:*}
+			\Delta u = A_1 \Delta x + A_2 \Delta y + A_3 \Delta z + \alpha_1 \Delta x + \alpha_2 \Delta y + \alpha_3 \Delta z,
+		\end{equation}
+		где $A_1, A_2, A_3$ --- числа; $\alpha_j \mathop{\longrightarrow}\limits_{\begin{smallmatrix} \Delta x \to 0 \\ \Delta y \to 0 \\ \Delta z \to 0 \end{smallmatrix}}0$, $j=1, 2, 3$. 
+		
+		Если $\rho = \sqrt{(\Delta x)^2 + (\Delta y)^2 + (\Delta z)^2}$, то \eqref{eq:*}, можно переписать в виде 
+		$$\Delta u = A_1 \Delta x + A_2 \Delta y + A_3 \Delta z + o(\rho), ~ \rho \to 0$$
+		Известно, что $A = \dfrac{\d u}{\d x} \bigg|_M, B = \dfrac{\d u}{\d y} \bigg|_M, C = \dfrac{\d u}{\d z} \bigg|_M \Rightarrow$ можно также записать: $\Delta u = \left( \grad u \big|_M, \vec{h} \right) + o \left( \big\| \vec{h} \big\| \right), \big\| \vec{h} \big\| \to 0$, где $\vec{h} = \{\Delta x, \Delta y, \Delta z\}$ --- вектор приращений.
+	\end{defn}
+	
+	\begin{note}
+		$\grad u$ задаёт векторное поле в области $D$, если скалярное поле $u$ дифференцируемо в $D$. Пусть $\vec{e}$ --- единичный вектор. Тогда $\dfrac{\d u}{\d e} = (\grad u, \vec{e}\,)$ --- скалярное поле.
+	\end{note}
+	
+	\begin{defn}
+		Векторное поле $\vec{a}$ \textit{дифференцируемо} в точке $M \in D$, если его приращение $\Delta \vec{a} = \vec{a}(x + \Delta x, y + \Delta y, z + \Delta z) - \vec{a}(x, y, z)$ в этой точке представляется в виде
+		\begin{equation}\tag{**}\label{eq:**}
+			\Delta \vec{a} = A \cdot \vec{h} + o \left( \big\| \vec{h} \big\| \right), ~ \big\| \vec{h} \big\| \to 0,
+		\end{equation}
+		где $\vec{h} = \{\Delta x, \Delta y, \Delta z\}$, $A$ --- некоторый линейный оператор в $\R^3$.
+		
+		Векторное поле $\vec{a}$ \textit{дифференцируемо в области} $D$, если оно дифференцируемо в каждой точке $M \in D$. 
+	\end{defn}
+	
+	\begin{prop}
+		Если поле $\vec{a}$ дифференцируемо в точке $M$, то представление \eqref{eq:**} единственно.
+	\end{prop}
+	
+	\begin{proof}
+		Пусть $\Delta \vec{a} = A \cdot \vec{h} + o \left( \big\| \vec{h} \big\| \right) = B \cdot \vec{h} + o \left( \big\| \vec{h} \big\| \right), ~ \big\| \vec{h} \big\| \to 0$.
+		
+		Тогда $(A - B) \cdot \vec{h} = o \left( \big\| \vec{h} \big\| \right)$. $(A - B) \cdot \dfrac{\vec{h}}{\big\| \vec{h} \big\|} = \mathop{(A - B) \cdot \vec{e}}\limits_{\textup{не зависит от } \rho} = o(1), ~ \rho \to 0$. 
+		
+		Значит, $(A - B) \cdot \vec{e} = 0$, где $\vec{e}$ --- произвольный единичный вектор $\Rightarrow A = B$. 
+	\end{proof}
+	
+	\begin{defn}
+		Пусть $\vec{e}$ --- вектор единичной длины. \textit{Производной векторного поля} $\vec{a}$ в точке $M$ \textit{по направлению} вектора $\vec{e}$ называется $\lim\limits_{\rho\to0} \dfrac{\vec{a}(M')-\vec{a}(M)}{\rho}=\dfrac{\d \vec{a}}{\d e}$, где $M' \in D$ --- такая, что $MM' \uparrow\uparrow \vec{e}$, $\rho = \rho (M, M')$.
+	\end{defn}
+
+	\begin{prop}
+		Если векторное поле $\vec{a}$ дифференцируемо в точке $M$, то для любого вектора $\vec{e}$ производная $\dfrac{\d \vec{a}}{\d e}$ существует и $\dfrac{\d \vec{a}}{\d e} = A\vec{e}$ ($A$ --- оператор из \eqref{eq:**}).
+	\end{prop}
+	
+	\begin{proof}
+		Пусть $M'$ такова, что $\overrightarrow{MM'} = \rho\vec{e}$. Тогда из определения 3 \\ $\Rightarrow \vec{a}(M') - \vec{a}(M) = A\cdot \overrightarrow{MM'} + o\big(\|\overrightarrow{MM'}\|\big) = A \rho \vec{e} + o(\rho) = \rho A \vec{e} + o(\rho), ~ \rho\to0$ \\ $\Rightarrow \dfrac{\vec{a}(M')-\vec{a}(M)}{\rho}=A\vec{e}+o(1)\mathop{\longrightarrow}\limits_{\rho\to0}A\vec{e}$
+	\end{proof}
+	
+	\begin{cor}
+		Пусть $\vec{a} = \{P,Q,R\}$ в системе координат $Oxyz$; $\vec{i}=\{1,0,0\}$, $\vec{j}=\{0,1,0\}$, $\vec{k}=\{0,0,1\}$. Тогда $A\vec{i}\mathop{=\!=\!=\!=}\limits_{\textup{утв. 2}} \dfrac{\d \vec{a}}{\d i} = \dfrac{\d \vec{a}}{\d x} = \{ P'_x, Q'_x, R'_x \}$, \\ $A\vec{j}= \dfrac{\d \vec{a}}{\d j} = \dfrac{\d \vec{a}}{\d y} = \{ P'_y, Q'_y, R'_y \}$, $A\vec{k}= \dfrac{\d \vec{a}}{\d k} = \dfrac{\d \vec{a}}{\d z} = \{ P'_z, Q'_z, R'_z \}$.
+		
+		Тогда матрица $\mathcal{A}$ оператора $A$ в этом базисе имеет вид: $\mathcal{A} = \left( \begin{matrix} P'_x & P'_y & P'_z \\ Q'_x & Q'_y & Q'_z \\ R'_x & R'_y & R'_z \end{matrix} \right)$.
+	\end{cor}
+	% заТеХано
+\end{document}

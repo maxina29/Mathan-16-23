@@ -1,0 +1,33 @@
+\ProvidesPackage{jeolm-groups}
+\renewcommand\jeolmheader{
+	\par\begingroup\small\sffamily
+		\strut
+			{\normalsize\centering{\texttt{\jeolmsubject}\\
+				\textsc{Лектор: \jeolmlector}}\\
+				\texttt{\TeXеd by \jeolmtex}\hfill\textit{\jeolmfaculty}  
+			}
+			\strut\nopagebreak\\
+			\rule[1ex]{\textwidth}{0.5pt}
+	\endgroup
+	\@nobreaktrue\par
+}
+
+\newcommand\header[1]{
+	\par\begingroup\Large
+		\strut
+			{\centering\textsc{#1}\\
+			}
+		\strut\nopagebreak
+		\endgroup
+}
+
+\newcommand\lection[3]{
+	\par\begingroup\Large
+		\strut
+			{\textbf{\textsc{Лекция #1}}\hfill\texttt{\large\sffamily\textit{#2}}\\
+			\centering\textsc{#3}\\
+			}
+		\strut\nopagebreak
+		\endgroup
+}
+\newcommand{\jeolmnewheader}{\jeolmheader\vspace{-2.5ex} \lection{\jeolmlectnum}{\jeolmdate}{\jeolmlectionname}\vspace{-2.5ex}}

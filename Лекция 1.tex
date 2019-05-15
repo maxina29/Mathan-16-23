@@ -1,0 +1,298 @@
+% заТеХано
+\documentclass[a4paper,10pt]{article}
+
+\include{hat}
+
+\def\jeolmlectnum{1}
+\def\jeolmdate{7 февраля 2019}
+\def\jeolmlectionname{Несобственный интеграл}
+
+\begin{document}
+	
+	\jeolmnewheader
+	
+	\begin{defn}
+		Пусть $a$ --- произвольное действительное число,
+		 и пусть функция $f(x)$ интегрируема на отрезке $[a, A]$ для
+		 любого числа $A \hm{>} a$. Обозначим $F(A) = \intl^A_a f(x)dx$.
+		 Если существует $\liml_{A \to + \infty} F(A) \hm{=} I$, то число
+		 $I$ называется \textit{несобственным интегралом первого рода}
+		 функции $f(x)$ и обозначается $\intl^{+ \infty}_a f(x)dx$.
+	\end{defn}
+	
+	\begin{note}
+		Обычно, если этот предел существует и конечен, то говорят,
+		 что интеграл \textit{сходится}, если он не существует или
+		 равен бесконечности, то выражение $\intl^{+ \infty}_a
+		 f(x)dx$ понимают как символ и говорят, что интеграл
+		 \textit{расходится}.
+	\end{note}
+
+	\begin{text}
+		Аналогично $\intl^a_{- \infty} f(x)dx \hm{=} \liml_{A \to - \infty}
+		 \intl^a_A f(x)dx$ (если функция $f(x)$ интег-рируема на отрезке
+		 $[A, a]$ для любого $A \hm{<} a$);\\
+		 $\intl^{+ \infty}_{- \infty}
+		 f(x)dx \hm{=} \intl^a_{- \infty} f(x)dx + \intl^{+ \infty}_a f(x)dx
+		 \hm{=} \liml_{A' \to - \infty} \intl^a_{A'} f(x)dx + \liml_{A'' \to
+		 + \infty} \intl^{A''}_a f(x)dx$ для любого действительного числа
+		 $a$, причем интеграл $\intl^{+ \infty}_{- \infty} f(x)dx$
+		 сходится в том и только в том случае, когда сходится каждый из
+		 интегралов в правой части.
+	\end{text}
+	
+	\begin{nthm}[Замена переменной в несобственном интеграле] \label{thm1}
+		\\
+		Пусть
+		 \begin{enumerate}[label=\arabic*)]
+		 	\item функция $f(x)$ непрерывна на промежутке $[a, + \infty)$;
+		 	\item функция $x \hm{=} g(t)$ определена, строго монотонна и
+		 	 непрерывно дифференцируема на промежутке $[\alpha, + \infty)$ (или
+		 	 на промежутке $(- \infty, \alpha]$);
+		 	\item множеством значений функции $g(t)$ является промежуток \\
+		 	 $[a, + \infty)$;
+		 	\item $g(\alpha) \hm{=} a$.
+		 \end{enumerate}
+		Тогда $\intl^{+ \infty}_a f(x)dx \hm{=} \intl^{+ \infty}_a f(g(t))g'(t)dt$ \\
+		 (или $\intl^{+ \infty}_a f(x)dx \hm{=} - \intl^{\alpha}_{- \infty} f(g(t))g'(t)dt$).
+	\end{nthm}
+	\begin{proof}
+		Пусть $A \hm{>} a$. Тогда функция $x \hm{=} g(t)$ строго монотонна на отрезке $[\alpha, \beta]$
+		 (или на отрезке $[\beta, \alpha]$), где $\beta$ --- действительное число, такое, что
+		 $g(\beta) \hm{=} A$. Существование $\beta$ следует из условия 3. Отсюда, применяя теорему о замене переменной в определенном интеграле,
+		 получим: $\intl^A_a f(x)dx \hm{=} \intl^{\beta}_{\alpha} f(g(t))g'(t)dt$ $\left( = - \intl^{\alpha}_{\beta} f(g(t))g'(t)dt\right)$. Из условий 2 и 3 следует, что $A \to + \infty$ тогда и только тогда, когда $\beta \to + \infty$
+		 $(\beta \to - \infty)$.  Значит, переходя к пределу, имеем $\intl^{+ \infty}_{a}
+		 f(x)dx \hm{=} \intl^{+ \infty}_{\alpha} f(g(t))g'(t)dt\left(\hm{=} - \intl^{\alpha}_{- \infty}
+		 f(g(t))g'(t)dt\right)$. %Теорема доказана.
+	\end{proof}
+	
+	\begin{nthm}[Интегрирование по частям в несобственном интеграле] \label{thm2}
+		 Пусть функции $f(x), g(x)$ непрерывно дифференцируемы на
+		 промежутке $[a, + \infty)$ и пусть существует конечный предел 
+		 $\liml_{x \to + \infty} (f(x)g(x)) \hm{=} L$. Тогда интегралы $\intl^{+ \infty}_a f(x)g'(x)dx$ и
+		 $\intl^{+ \infty}_a f'(x)g(x)dx$ сходятся и расходятся одновременно и выполнено
+		 равенство
+		 $$\intl^{+ \infty}_a f(x)g'(x)dx \hm{=} L - f(a)g(a)
+		 - \intl^{+ \infty}_a f'(x)g(x)dx$$
+	\end{nthm}
+	\begin{proof}
+		Из формулы интегрирования по частям в определенном интеграле
+		 следует, что для любого действительного числа $A \hm{>} a: \intl^A_a f(x)g'(x)dx \hm{=} f(A)g(A) - f(a)g(a) -
+		 \intl^A_a f'(x)g(x)dx$. Если существует предел при $A \to
+		 + \infty$ одной из частей последнего равенства, то существует
+		 предел и второй, и они равны. %Теорема доказана.
+	\end{proof}
+	
+	\begin{text}
+		Пусть теперь функция $f(x)$ интегрируема на отрезке $[a, A]$
+		 для любого $A \hm{>} a$.
+	\end{text}
+	
+	\begin{nthm}[Критерий Коши сходимости несобственного интеграла первого рода] \label{thm3}
+		 Интеграл $\intl^{+ \infty}_a f(x)dx$ сходится тогда и только
+		 тогда, когда для любого числа $\epsilon \hm{>} 0$ найдется число
+		 $B \hm{=} B(\epsilon) \hm{>} a$ такое, что для любых чисел $A_1, A_2 \hm{>} B$
+		 выполнено: $\left| \intl^{A_2}_{A_1} f(x)dx \right| \hm{<} \epsilon$.
+	\end{nthm}
+	\begin{proof}
+		Пусть $F(A) \hm{=} \intl^A_a f(x)dx$. Тогда по критерию Коши существования
+		 предела функции на бесконечности функция $F(A)$ имеет предел при $A\to+ \infty$
+		 тогда и только тогда, когда для любого $\epsilon \hm{>} 0$ найдется число
+		 $B \hm{=} B(\epsilon) \hm{>} a$ такое, что для любых $A_1, A_2 \hm{>} B$ выполнено:
+		 $\big|\underbrace{ F(A_1) - F(A_2)}_{\int\limits_{A_1}^{A_2}f(x)dx}\big| \hm{<} \epsilon $. %Теорема доказана.
+	\end{proof}
+	
+	\begin{nthm}[Признак сравнения] \label{thm4}
+		 Если интеграл $\intl^{+ \infty}_a g(x)dx$
+		 сходится и для любого $x \hm{\ge} a$ имеем: $\left| f(x) \right| \hm{\le} g(x)$, то
+		 $\intl^{+ \infty}_a f(x)dx$ сходится.
+	\end{nthm}
+	\begin{proof}
+		Так как $\intl^{+ \infty}_a g(x)dx$ сходится, то, согласно критерию Коши,
+		 для любого $\epsilon \hm{>} 0$ найдется число $B \hm{=} B(\epsilon) \hm{>} a$ такое, что
+		 для любых $A_1, A_2$, таких, что $B<A_1<A_2$ выполняется: $\left| \intl^{A_2}_{A_1} f(x)dx \right|
+		 \hm{\le} \intl^{A_2}_{A_1} \left| f(x) \right| dx \hm{\le} \intl^{A_2}_{A_1} g(x)dx \hm{=}
+		 \left| \intl^{A_2}_{A_1} g(x)dx \right| \hm{<} \epsilon$. Это означает, что
+		 $\intl^{+ \infty}_a f(x)dx$ сходится. %Теорема доказана.
+	\end{proof}
+	
+	\begin{cor*}
+		Если интеграл $\intl^{+ \infty}_a g(x)dx$ расходится и
+		 для любого $x \hm{\ge} a$ имеем: $0 \hm{\le} g(x) \hm{\le} f(x)$,
+		 то интеграл $\intl^{+ \infty}_a f(x)dx$ расходится.
+	\end{cor*}
+	\begin{proof}
+		Если $0\le g(x)\le f(x)$ и $\int\limits_a^{+\infty}f(x)dx$ сходится, то по теореме 4 сходится и $\int\limits_a^{+\infty}g(x)dx$. Получили противоречие, значит, $\int\limits_a^{+\infty}f(x)dx$ расходится
+	\end{proof}
+
+	\begin{note}
+		Удобнее всего сравнивать подынтегральную функцию со степенью. $\int\limits_1^{+\infty}\dfrac{dx}{x^\alpha}$ сходится тогда и только тогда, когда $\alpha>1$.
+	\end{note}
+
+	\begin{cor}
+		Если $\lim\limits_{x\to+\infty}\dfrac{f(x)}{g(x)}=C\ne0$, то интегралы $\int\limits_a^{+\infty}f(x)dx$ и $\int\limits_a^{+\infty}g(x)dx$ сходятся и расходятся одновременно.
+	\end{cor}
+	
+	\begin{defn}
+		Говорят, что интеграл $\intl^{+ \infty}_a f(x)dx$
+		 \textit{сходится абсолютно,} если сходится интеграл
+		 $\intl^{+ \infty}_a \left| f(x) \right| dx$,
+		 \textit{и сходится условно,} если он сам сходится, а
+		 интеграл $\intl^{+ \infty}_a \left| f(x) \right| dx$ расходится.
+	\end{defn}
+	
+	\begin{note}
+		Если интеграл сходится абсолютно, то он сходится %\hyperref[thm4]{
+		(теорема 4)%}
+		.
+	\end{note}
+	
+	\begin{nthm}[Признак Абеля сходимости несобственного интеграла] \label{thm5}
+		Пусть функции $f(x)$ и
+		 $g(x)$ определены на промежутке $[a, + \infty)$, причем:
+		 \begin{enumerate}
+		 	\item $f(x)$ интегрируема на отрезке $[a, A]$ при всех $A \hm{>} a$ и интеграл $\intl^{+ \infty}_a f(x)dx$ сходится;
+		 	\item $g(x)$ монотонна на $[a, + \infty)$ и существует постоянная $L \hm{>} 0$ такая, что $\left| g(x) \right| \hm{\le} L$ при всех $x \hm{\ge} a$.
+		 \end{enumerate}
+		 Тогда интеграл $\intl^{+ \infty}_a f(x)g(x)dx$ сходится.
+	\end{nthm}
+	\begin{proof}
+		Воспользуемся критерием Коши сходимости несобственного интеграла.
+		 Выберем произвольное число $\epsilon \hm{>} 0$. Так как интеграл
+		 $\intl^{+ \infty}_a f(x)dx$ сходится, то найдется такое число
+		 $B(\epsilon) \hm{>} a$, что для любых чисел $A_1, A_2$, $B \hm{<} A_1 \hm{<} A_2$,
+		 выполнено: $\left| \intl^{A_2}_{A_1} f(X)dx \right| \hm{<} \dfrac{\epsilon}{2L}$,
+		 где $L$ --- постоянная, ограничивающая функцию $g(x)$. \\
+		 Воспользуемся теперь второй теоремой о среднем значении. Поскольку
+		 функция $g(x)$ монотонна на любом промежутке $[A'_1, A'_2]$,
+		 $B \hm{<} A'_1 \hm{<} A'_2$, то найдется такая точка $\xi \in [A'_1, A'_2]$,
+		 что $\left| \intl^{A'_2}_{A'_1} f(x)g(x)dx \right| \hm{=} \left| g(A'_1)
+		 \intl^{\xi}_{A'_1} f(x)dx + g(A'_2) \intl^{A'_2}_{\epsilon} f(x)dx \right|
+		 \hm{\le} L\cdot\left(\dfrac{\epsilon}{2L} + \dfrac{\epsilon}{2L}\right) \hm{=} \epsilon$ для
+		 любых чисел $A'_1, A'_2$, $B \hm{<} A'_1 \hm{<} A'_2$. Согласно критерию Коши,
+		 это означает, что интеграл $\intl^{+ \infty}_a f(x)g(x)dx$ сходится.
+		 %Теорема доказана.
+	\end{proof}
+	
+	\begin{nthm}[Признак Дирихле сходимости несобственного интеграла] \label{thm6}
+		 Пусть функции $f(x)$ и $g(x)$ определены на промежутке $[a, + \infty)$,
+		 причём:
+		 \begin{enumerate}
+		 	\item функция $f(x)$ интегрируема на отрезке $[a, A]$ для любого
+		 	 $A \hm{>} a$ и существует постоянная $C \hm{>} 0$ такая, что $\left|F(A)\right| \hm{=}
+		 	 \left|\intl^{A}_a f(x)dx\right| \hm{\le} C$ для любого $A \hm{>} a$;
+		 	\item функция $g(x)$ монотонна на $[a, + \infty)$ и
+		 	 $\liml_{x \to + \infty} g(x) \hm{=} 0$.
+		 \end{enumerate}
+		 Тогда интеграл $\intl^{+ \infty}_a f(x)g(x)dx$ сходится.
+	\end{nthm}
+	\begin{proof}
+		Пусть функция $g(x)$ не возрастает на $[a, + \infty)$
+		 (случай, когда $g(x)$ не убывает, рассматривается
+		 аналогично). Тогда $g(x) \hm{\ge} 0$, для любого $x \in
+		 [a, + \infty)$ (так как $\liml_{x \to + \infty}
+		 g(x) \hm{=} 0$). Выберем произвольное число $\epsilon \hm{>} 0$.
+		 Существует $B\hm{=}B(\epsilon) \hm{>} 0$ такое, что $0 \hm{\le} g(x)
+		 \hm{<} \dfrac{\epsilon}{2C}$ для любого $x \hm{>} B$. Отсюда и из
+		 второй теоремы о среднем следует, что для любых чисел
+		 $A_1, A_2$, $B \hm{<} A_1 \hm{<} A_2$, выполняется (для некоторого
+		 $\tau \in [A_1, A_2]$):
+		 $\left|\intl^{A_2}_{A_1} f(x)g(x)dx\right| \hm{=} \left|g(A_1)\intl^{\tau}_{A_1} f(x)dx\right|
+		 \hm{<} \dfrac{\epsilon}{2C} \left|F(\tau) - F(A_1)\right| \hm{\le} \dfrac{\epsilon}{2C}\cdot(C+C) \hm{=}
+		 \epsilon.$ Это означает, что $\intl^{+ \infty}_a f(x)g(x)dx$ сходится
+		 (критерий Коши). %Теорема доказана.
+	\end{proof}
+	
+	\begin{note}
+		Сходимость интеграла в %\hyperref[thm5]{
+		теоремах 5 %}
+		и
+		%\hyperref[thm6]{
+		6%}
+		, вообще говоря, не абсолютная.
+	\end{note}
+	
+	\begin{exmp}
+		Исследуем на сходимость интеграл $I(\alpha)\hm{=} \intl^{+ \infty}_1
+		 \dfrac{\sin x}{x^{\alpha}} dx$. %, $\alpha \hm{>} 0$.
+		 \begin{enumerate}[label=\arabic*)]
+		 	\item Если $\alpha \hm{>} 1$, то $\left| \dfrac{\sin x}{x^{\alpha}} \right| \hm{\le}
+		 	 \dfrac{1}{x^{\alpha}}$. Так как интеграл $\intl^{+ \infty}_1
+		 	 \dfrac{1}{x^{\alpha}} \hm{=} \left.\dfrac{1 - \alpha}{x^{\alpha - 1}}\right|^{+ \infty}_1
+		 	 \hm{=} \alpha - 1$ при $\alpha \hm{>} 1$, то интеграл $\intl^{+ \infty}_1
+		 	 \dfrac{\sin x}{x^{\alpha}} dx$ сходится абсолютно (признак сравнения).
+		 	\item Если $\alpha\le0$, применим критерий Коши: $\exists \epsilon=1:\forall B>1~ \exists A_{1,n}=2\pi n$, $A_{2,n}=\dfrac{\pi}{2}+2\pi n~ (B<A_{1,n}<A_{2,n}):$
+		 	$$\left|\int\limits_{2\pi n}^{\pi/2+2\pi n}\sin x\cdot x^{-d}dx\right|\ge\underbrace{(2\pi n)^{-\alpha}}_{\ge1}\int\limits_{2\pi n}^{\pi/2+2\pi n}\sin xdx\ge-\cos x\bigg|_{2\pi n}^{\pi/2+2\pi n}=1=\epsilon$$
+		 	Значит, $I(\alpha)$ расходится при $\alpha\le0$ 
+		 	\item Если $0 \hm{<} \alpha \hm{\le} 1$, то функция $g(x) \hm{=} \dfrac{1}{x^{\alpha}}$ монотонно стремится
+		 	 к нулю на $[1, + \infty)$, а функция $f(x) \hm{=} \sin x$ имеет на этом промежутке
+		 	 ограниченную первообразную $F(A) \hm{=} \intl^A_1 \sin x dx \hm{=} \cos 1 - \cos A$.
+		 	 Значит, интеграл $\intl^{+ \infty}_1 \dfrac{\sin x}{x^{\alpha}} dx$ сходится по признаку
+		 	 Дирихле. Но $\left| \dfrac{\sin x}{x^{\alpha}} \right| \hm{\ge} \dfrac{\sin^2 x}{x^{\alpha}} \hm{=}
+		 	 \dfrac{1}{2x^{\alpha}} - \dfrac{\cos 2x}{2x^{\alpha}}$. Так как интеграл
+		 	 $\intl^{+ \infty}_{1} \dfrac{\cos 2x}{2x^{\alpha}} dx$ сходится при $\alpha \hm{>} 0$ по
+		 	 признаку Дирихле, а интеграл $\intl^{+ \infty}_1 \dfrac{1}{2x^{\alpha}} dx$ расходится
+		 	 при $0 \hm{<} \alpha \hm{\le} 1$ интеграл $I(\alpha)$ сходится условно.
+		 	 \par \textbf{Ответ:} $I(\alpha)$ расходится при $\alpha\le0$, сходится условно при
+		 	 $0 \hm{<} \alpha \hm{\le} 1$ и сходится абсолютно при $\alpha \hm{>} 1$. \par
+		 \end{enumerate}
+	\end{exmp}
+
+	\begin{note}
+		Возможно, что интеграл $\int\limits_a^{+\infty}f(x)dx$ сходится, хотя $f(x)\not\to0$ при $x\to+\infty$.
+	\end{note}
+
+	\begin{exmp}
+		$\int\limits_1^{+\infty}\sin(x^2)dx=\left|\begin{matrix}
+		x^2=t\\x=\sqrt{t}\\dx=\dfrac{1}{2\sqrt{t}}dt
+		\end{matrix}\right|=\int\limits_1^{+\infty}\dfrac{\sin t}{2\sqrt{t}}dt=\dfrac{1}{2} I\left(\dfrac{1}{2}\right)$ --- сходится условно.
+	\end{exmp}
+	
+	\begin{defn}
+		Пусть функция $f(x)$ определена на полуинтервале $[a, b)$ и не ограничена на нём.
+		 Если для любого $\alpha \in [a, b)$ функция $f(x)$ интегрируема на отрезке $[a, \alpha]$,
+		 то выражение $\liml_{\alpha \to b-} \intl^{\alpha}_a f(x) dx$ называется \textit{несобственным
+		 интегралом второго рода} от функции $f(x)$ на отрезке $[a, b]$ и обозначается $\intl^b_a f(x)dx$.
+		 Если предел существует и конечен, то говорят, что интеграл \textit{сходится}, в противном случае
+		 --- \textit{расходится}. Точка $b$ называется \textit{особой} точкой несобственного интеграла.
+		 Аналогично $\intl^b_a f(x)dx \hm{=} \liml_{\alpha \to a+} \intl^b_{\alpha} f(x)dx$ в случае, если
+		 $a$ --- особая точка. Если особая точка $c$ лежит внутри интервала $(a, b)$, то
+		 $\intl^b_a f(x)dx \hm{=} \intl^c_a f(x)dx + \intl^b_c f(x)dx \hm{=}
+		 \liml_{\alpha' \to c-} \intl^{\alpha'}_a f(x)dx + \liml_{\alpha'' \to c+} \intl^b_{\alpha''} f(x)dx$,
+		 причем интеграл $\intl^b_a f(x)dx$ сходится в том и только в том случае, когда оба предела в правой
+		 части существуют и конечны.
+	\end{defn}
+	
+	\begin{note}
+		Свойства интегралов второго рода аналогичны свойствам интегралов первого рода
+		(интеграл второго рода $\intl^b_a f(x)dx$ можно свести к интегралу первого
+		рода, например, заменой $t \hm{=} \dfrac{1}{b - x}$, если $b$ --- особая точка).
+	\end{note}
+	
+	\begin{defn}
+		Число $l \hm{=} \liml_{A \to + \infty} \intl^A_{-A} f(x)dx$ называется \textit{главным значением}
+		 (в смысле Коши) интеграла $\intl^{+ \infty}_{- \infty} f(x)dx$ и обозначается
+		 $l \hm{=} v.p. \intl^{+ \infty}_{- \infty} f(x)dx$.
+	\end{defn}
+	
+	\begin{defn}
+		Если $c$ --- особая точка несобственного интеграла второго рода, $c \in (a, b)$,
+		 то $$v.p. \intl^b_a f(x)dx \hm{=} \liml_{\delta \to 0+} \left( \intl^{c - \delta}_a f(x)dx
+		 + \intl^b_{c + \delta} f(x)dx \right).$$
+	\end{defn}
+	
+	\begin{note}
+		Интеграл может не сходиться в обычном смысле, но сходиться в смысле главного значения.
+		 Например, пусть функция $f(x)$ определена всюду на действительной оси и $f(-x) \hm{=} -f(x)$
+		 для любого $x$. Тогда $v.p. \intl^{+ \infty}_{- \infty} f(x) dx \hm{=} \liml_{A \to + \infty}
+		 \left( \intl^0_{-A} f(x)dx + \intl^A_0 f(x)dx \right) \hm{=} \liml_{A \to + \infty} \left(
+		 \intl^0_A f(-x)d(-x) + \intl^A_0 f(x)dx \right) \hm{=} 0$, в то время как в обычном смысле
+		 интеграл $\intl^{+ \infty}_{- \infty} f(x)dx$ может и не сходиться (например, для функции 
+		 $f(x) \hm{=} x$).
+	\end{note}
+
+	\begin{note}
+		Если несобственный интеграл сходится, то он равен своему главному значению.
+	\end{note}
+	% заТеХано
+\end{document}

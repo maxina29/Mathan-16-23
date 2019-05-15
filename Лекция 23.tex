@@ -1,0 +1,158 @@
+% заТеХано
+\documentclass[a4paper,10pt]{article}
+
+\include{hat}
+
+\def\jeolmlectnum{23}
+\def\jeolmdate{6 мая 2019}
+\def\jeolmlectionname{Дивергенция и ротор}
+\def\jeolmtex{Ма$\xi$м}
+
+\begin{document}
+	
+	\jeolmnewheader
+	
+	Пусть в $\R^3$ выбран ортонормированный базис: $\vec{i}, \vec{j}, \vec{k}$. Пусть векторное поле $\vec{a}$ имеет в этом базисе координаты $\{P, Q, R\}$ и дифференцируемо в области $D \subset \R^3:$ $\Delta \vec{a} = A\vec{h} + o(\|\vec{h}\|), \|\vec{h}\|\to0$, где $\vec{h}$ --- вектор приращений; $A$ --- линейный оператор, его матрица $A=\left( \begin{matrix}[1.1] P'_x & P'_y & P'_z \\ Q'_x & Q'_y & Q'_z \\ R'_x & R'_y & R'_z \end{matrix} \right)$
+	
+	\begin{defn}
+		\textit{Дивергенцией} векторного поля $\vec{a}$ в области $D$ называется выражение $\div \vec{a} = (\vec{i}, A\vec{i}) + (\vec{j}, A\vec{j}) + (\vec{k}, A\vec{k}) = \dfrac{\d P}{\d x} + \dfrac{\d Q}{\d y} + \dfrac{\d R}{\d z} = (\vec{\nabla}, \vec{a})$, где $\vec{\nabla} = \left\{\dfrac{\d}{\d x}, \dfrac{\d}{\d y}, \dfrac{\d}{\d z}\right\}$
+	\end{defn}
+	
+	\begin{defn}
+		\textit{Ротором} векторного поля $\vec{a}$ в области $D$ называется 
+		\begin{multline*}
+		\rot \vec{a} = [\vec{i}, A\vec{i}] + [\vec{j}, A\vec{j}] + [\vec{k}, A\vec{k}] = \left| \begin{matrix} \vec{i} & \vec{j} & \vec{k} \\ 1&0&0 \\ P_x' & Q_x' & R_x' \end{matrix} \right| + \left| \begin{matrix} \vec{i} & \vec{j} & \vec{k} \\ 0&1&0 \\ P_y' & Q_y' & R_y' \end{matrix} \right| + \left| \begin{matrix} \vec{i} & \vec{j} & \vec{k} \\ 0&0&1 \\ P_z' & Q_z' & R_z' \end{matrix} \right| =\\= -\vec{j}R_x' + \vec{k}Q_x' + \vec{i}R_y' - \vec{k}P_y' - \vec{i}Q'_z + \vec{j}P'_z =\\= \vec{i}(R'_y - Q'_z) + \vec{j}(P'_z-R'_x) + \vec{k}(Q'_x-P'_y) =
+		\left| \begin{matrix} \vec{i} & \vec{j} & \vec{k} \\ \dfrac{\d}{\d x}&\dfrac{\d}{\d y}&\dfrac{\d}{\d z} \\ P & Q & R \end{matrix} \right| [\vec{\nabla}, \vec{a}]
+		\end{multline*}
+	\end{defn}
+	
+	\begin{note}
+		Можно показать, что дивергенция и ротор не зависят от выбора системы координат. Пусть, например, $\vec{i}', \vec{j}', \vec{k}'$ --- другой ортонормированный базис; $\vec{i} = C\vec{i}', \vec{j} = C\vec{j}', \vec{k} = C\vec{k}'$, тогда $A' = C^{-1}AC$, где $A'$ --- матрица оператора в новом базисе. Тогда $$(\vec{i}, A' \vec{i}') = (C^{-1}\vec{i}, C^{-1}ACC^{-1}\vec{i}) = (C^{-1}\vec{i}, C^{-1}A\vec{i}) = ( \mspace{-20mu} \underbrace{(C^{-1})^{*}C^{-1}}_{\begin{smallmatrix}E,\textup{ т.к. $C$ --- орто-}\\\textup{гональная матрица}\end{smallmatrix}} \mspace{-20mu} \vec{i}, A\vec{i}) = (\vec{i}, A\vec{i})$$ 
+	\end{note}
+	
+	\begin{note}
+		Физически дивергенция --- это \textit{расходимость}: показывает скорость изменения компонент поля $\vec{a}$ в своих собственных направлениях. Если $M \in D$, $\div \vec{a}(M) > 0$, то $M$ --- источник, если $\div\vec{a}(M)<0$, то сток. 
+		
+		Ротор --- это \textit{вихрь}, он показывает, как меняются компоненты поля в <<чужих>> направлениях. Является мерой вращения поля, если поле $\vec{v}$ --- линейная скорость, $\vec{\omega}$ --- угловая скорость, то $\vec{\omega} =\drobb{1}{2} \rot\vec{v}$
+	\end{note}
+	
+	\begin{prop}
+		Пусть в области $D \subset \R^3$ определены скалярное поле $u(M)$ и векторное поле $\vec{a}(M) = \{P(M), Q(M), R(M)\}$. Пусть все частные производные второго порядка функций $u, P, Q, R$ непрерывны в $D$. Тогда 
+		\begin{equation}
+		\label{eq:1}
+		\rot \grad u = [\vec{\nabla}, \vec{\nabla}u]=0 
+		\end{equation}
+		\begin{equation}\label{eq:2}
+		\div\grad u = \mspace{-43mu} \underbrace{\Delta u}_{\textup{оператор Лапласа}} \mspace{-43mu} =u_{xx}' + u_{yy}' +u_{zz}'
+		\end{equation}
+		\begin{equation}\label{eq:3}
+		\grad \div \vec{a} = (P_{xx}'' + Q_{xy}'' +R_{xz}'') \cdot \vec{i} + (P_{xy}'' + Q_{yy}'' +R_{yz}'') \cdot \vec{j} + (P_{xz}'' + Q_{yz}'' +R_{zz}'') \cdot \vec{k}
+		\end{equation}
+		\begin{equation}\label{eq:4}
+		\div\rot \vec{a} = (\vec{\nabla}, [\vec{\nabla}, \vec{a}]) = 0;
+		\end{equation}
+		\begin{equation}\label{eq:5}
+		\rot\rot \vec{a} = [\vec{\nabla}, [\vec{\nabla}, \vec{a}]] = \grad \div \vec{a} - \mspace{-29mu} \underbrace{\Delta \vec{a}}_{\{\Delta P, \Delta Q, \Delta R\}}
+		\end{equation}
+	\end{prop}
+	
+	\begin{proof*}
+		\begin{enumerate}
+			\item $[\vec{\nabla}, \vec{\nabla} u] = \left| \begin{matrix} \vec{i} & \vec{j} & \vec{k} \\ \dfrac{\d}{\d x}&\dfrac{\d}{\d y}&\dfrac{\d}{\d z} \\[7px] \dfrac{\d u}{\d x}&\dfrac{\d u}{\d y}&\dfrac{\d u}{\d z} \end{matrix} \right| = \vec{i} \cdot (\mspace{-32mu} \underbrace{u''_{zy} - u''_{yz}}_{\begin{smallmatrix} \textup{$0$ в силу непрер.} \\ \textup{ЧП второго порядка} \end{smallmatrix}} \mspace{-32mu}) + \vec{j} \cdot ( \underbrace{u''_{xz}-u''_{zx}}_{0}) + \vec{k} \cdot ( \underbrace{u''_{yx}-u''_{xy}}_{0}) = 0$
+			\item $\div\grad u = (\vec{\nabla},\vec{\nabla}u) = \dfrac{\d^2u}{\d x^2} +\dfrac{\d^2 u}{\d y^2} + \dfrac{\d^2 u}{\d z^2}$
+			\item $\grad \div \vec{a} = \vec{\nabla}(\vec{\nabla},\vec{a}) = \vec{\nabla}\left(\dfrac{\d P}{\d x} + \dfrac{\d Q}{\d y} +\dfrac{\d R}{\d z}\right) =$ \\ $= (P_{xx}'' + Q_{yx}'' +R_{zx}'') \cdot \vec{i} + (P_{xy}'' + Q_{yy}'' +R_{zy}'') \cdot \vec{j} + (P_{xz}'' + Q_{yz}'' +R_{zz}'') \cdot \vec{k}$ 
+			\item $\div\rot \vec{a} = (\vec{\nabla}, [\vec{\nabla}, \vec{a}]) = \dfrac{\d}{\d x}\left(\dfrac{\d R}{\d y} - \dfrac{\d Q}{\d z}\right) + \dfrac{\d}{\d y}\left(\dfrac{\d P}{\d z} - \dfrac{\d R}{\d x}\right) + \dfrac{\d}{\d z}\left(\dfrac{\d Q}{\d x} - \dfrac{\d P}{\d y}\right) =$ \\ $= R''_{xy} - Q''_{xz} + P''_{yz} - R''_{xy} + Q''_{xz} - P''_{yz} = 0$
+			\item $\rot\rot \vec{a} = [\vec{\nabla}, [\vec{\nabla}, \vec{a}]] = \left| \begin{matrix} \vec{i} & \vec{j} & \vec{k} \\ \dfrac{\d}{\d x}&\dfrac{\d}{\d y}&\dfrac{\d}{\d z} \\ \mspace{-2mu} R'_y \mspace{-8mu}-\mspace{-5mu} Q'_z \mspace{-6mu} & \mspace{-6mu} P'_z \mspace{-8mu}-\mspace{-5mu} R'_x \mspace{-6mu} & \mspace{-6mu} Q'_x \mspace{-8mu}-\mspace{-5mu} P'_y \mspace{-2mu} \end{matrix} \right| = \vec{i} \cdot (Q''_{xy} - P''_{yy} - P''_{zz} + R''_{xz}) +$ \\ $+ \vec{j} \cdot (R''_{yz} - Q''_{zz} - Q''_{xx} + P''_{xy}) + \vec{k} \cdot (P''_{xz} - R''_{xx} - R''_{yy} + Q''_{yz}) = \vec{i} \cdot (P''_{xx} + Q''_{xy} + R''_{xz}) -$\\$- \vec{i} \cdot \Delta P + \vec{j} \cdot (P''_{xy} + Q''_{yy} + R''_{yz}) - \vec{j} \cdot \Delta Q + \vec{k} \cdot (P''_{xz} + Q''_{yz} + R''_{zz}) - \vec{k} \cdot \Delta R$ \hspace{\stretch{1}}\qedsymbol 
+		\end{enumerate}
+	\end{proof*}
+	
+	\header{Формула Грина}
+	
+	Пусть $\Pi$ --- плоскость в $\R^3$; $D \subset \Pi$ --- область, такая, что $D$ --- односвязна (то есть граница $\delta D$ --- линейно связное множество $\Leftrightarrow$ область $D$ не содержит <<дырок>>)
+	% рисунок
+	
+	Пусть граница $\delta D$:
+	\begin{enumerate}[label=\arabic*)]
+		\item является замкнутой кусочно-гладкой кривой без особых точек;\\ $(\phi'(t))^2 + (\psi'(t))^2 \ne 0$
+		\item\label{uslovie:2} (не обязательное требование, упрощает доказательство) на плоскости $\Pi$ можно выбрать декартову систему координат так, что прямые, параллельные осям координат пересекают $\delta D$ не более, чем в двух точках. Пусть $\vec{k}$ --- единичнный вектор нормали к плоскости $\Pi$; $\vec{t}$ --- единичный вектор касательной к $\delta D$ на плоскости $\Pi$; направление векторов $\vec{t}$ и $\vec{k}$ согласовано (по правилу буравчика)
+		% рисунок
+	\end{enumerate}
+	
+	\begin{nthm}[Формула Грина]
+		Пусть векторное поле $\vec{a}$ дифференцируемо в описанной выше области $D$, и пусть производная поля $\vec{a}$ по любому направлению непрерывна в $\overline{D}=D\cup\delta D$. Тогда 
+		\begin{equation}\label{eq:6}
+		\overbrace{\iint\limits_{\overline{D}}(\rot\vec{a}, \vec{k})d\sigma}^{\begin{smallmatrix}\textup{поток поля $\rot \vec{a}$}\\\textup{через область $D$}\end{smallmatrix}} = \mspace{-55mu} \underbrace{\oint\limits_{\d D}(\vec{a}, \vec{t}\mspace{3mu})dl}_{\begin{smallmatrix}\textup{циркуляция поля $\vec{a}$}\\\textup{по замкнутому контуру $\d D$}\end{smallmatrix}}
+		\end{equation}
+	\end{nthm}
+	
+	\begin{proof}
+		Все подынтегральные функции непрерывны $\Rightarrow$ интегралы в обеих частях \eqref{eq:6} существуют. Все величины инвариантны относительно выбора системы координат $\Rightarrow$ можем доказать формулу \eqref{eq:6} в специально выбранной системе. Направим ось $Oz$ вдоль вектора $\vec{k}$, тогда плоскость $\Pi$ совпадает с $Oxy$; оси $Ox$ и $Oy$ направлены так, чтобы выполнялось условие \ref{uslovie:2} для границы $\d D$.
+		
+		Тогда $\vec{a} = \mspace{-37mu} \mathop{\{P, Q, 0\}}\limits_{P=P(x,y),~Q=Q(x,y)} \mspace{0mu} \Rightarrow \rot \vec{a} = \vec{i} \cdot ( \mspace{-23mu} \overbrace{R'_y}^{\textup{$0$, т.к. $R=0$}} \mspace{-30mu} - \mspace{-30mu} \underbrace{Q'_z}_{\begin{smallmatrix}\textup{$0$, т.к. $Q$ не}\\\textup{зависит от $z$}\end{smallmatrix}} \mspace{-25mu}) + \vec{j} \cdot (\underbrace{P'_z}_{0} \mspace{-5mu} - \mspace{-5mu} \overbrace{R'_x}^{0}) + \underbrace{\vec{k} \cdot (Q'_x - P'_y)}_{\textup{осталось}}$. Вектор касательной $\vec{t} = \{ \cos\alpha, \sin\alpha, 0 \}$, где $\alpha$ --- угол между $\vec{t}$ и $Ox$. Значит, формулу \eqref{eq:6} можно переписать в виде:
+		\begin{multline*}
+		\iint\limits_{\overline{D}} (\vec{k}, \rot\vec{a}) \, d\sigma = \iint\limits_{\overline{D}} \left( \dfrac{\d Q}{\d x} - \dfrac{\d P}{\d y} \right) dxdy = \int\limits_{\d D} (\vec{a}, \vec{t}\,) \, d\ell = \int\limits_{\d D} (P\cos\alpha + Q\sin\alpha)\, d\ell =
+		\\
+		= \int\limits_{\d D} (P%\underbrace{
+		\cos\alpha%}_{\frac{x'(t)}{\sqrt{(x'(t))^2+(y'(t))^2}}} 
+		+ Q\sin\alpha) \sqrt{(x'(t))^2+(y'(t))^2} dt = \left| \begin{matrix} \cos\alpha = \frac{x'(t)}{\sqrt{(x'(t))^2+(y'(t))^2}} \\[2pt] \sin\alpha = \frac{y'(t)}{\sqrt{(x'(t))^2+(y'(t))^2}} \end{matrix} \right| =
+		\\
+		= \int\limits_{\d D} \big(Px'(t) + Qy'(t)\big) dt = \int\limits_{\d D} Pdx + Qdy
+		\end{multline*}
+		% рисунок
+		Следовательно, осталось показать, что 
+		\begin{equation}\label{eq:7}
+		\iint\limits_{\overline{D}} \left( \dfrac{\d Q}{\d x} - \dfrac{\d P}{\d y} \right) dxdy = \int\limits_{\d D} Pdx + Qdy
+		\end{equation}
+		Докажем, например, что 
+		$$ -\iint\limits_{\overline{D}} \dfrac{\d P}{\d y} \, dxdy = \int\limits_{\d D} Pdx $$
+		Любая прямая, параллельная оси $Oy$, пересекает $\d D$ не более, чем в двух точках: $\big(x, y_1(x)\big)$ и $\big(x, y_2(x)\big)$, $y_1(x) \le y_2(x)$. 
+		
+		Пусть $x_1$ --- наименьшая из абсцисс таких точек, $x_2$ --- наибольшая. 
+		
+		Обозначим $C_1 = \left\{ \big(x, y_1(x)\big) \mid x_1 \le x \le x_2 \right\}$, $C_2 = \left\{ \big(x, y_2(x)\big) \mid x_1 \le x \le x_2 \right\}$. 
+		
+		Тогда $\d D = C_1 \cup C_2^-$, где $C_2^-$ --- кривая $C_2$, пройденная в противоположном направлении. Отсюда 
+		\begin{multline*}
+		-\iint\limits_{\overline{D}} \dfrac{\d P(x,y)}{\d y} \, dxdy \mathop{=\!=\!=\!=\!=\!=\!=\!=\!=\!=\!=\!=\!\!=}\limits^{\textup{сведение двойного}}_{\textup{инт-ла к повторному}} -\int\limits_{x_1}^{x_2} \left( \int\limits_{y_1(x)}^{y_2(x)} \dfrac{\d P(x,y)}{\d y} \, dy \right) dx =\\= -\int\limits_{x_1}^{x_2} P \big(x, y_2(x)\big) - P \big(x, y_1(x)\big) dx = \int\limits_{C_1} P(x,y) \, dx + \int\limits_{C_2^-} P(x,y) \, dx = \int\limits_{\d D} P(x, y) \, dx
+		\end{multline*}
+	\end{proof}
+	
+	\begin{note}
+		Как правило, формулу Грина записывают сразу \\ в виде \eqref{eq:7}.
+	\end{note}
+	
+	\begin{wrapfigure}[1]{r}{0.2\linewidth}
+		\vspace{-7ex}
+		\begin{asy}[width=0.2\textwidth]
+		size(100);
+		draw((0,-1){right}..{up}(1,0){up}..{left}(0,1),Arrow);
+		draw((0,1){left}..{down}(-1,0){down}..{right}(0,-1),Arrow);
+		draw((0,0.5){right}..{down}(0.5,0){down}..{left}(0,-0.5),Arrow);
+		draw((0,-0.5){left}..{up}(-0.5,0){up}..{right}(0,0.5),Arrow);
+		draw((1,0)--(0.5,0));
+		draw((-1,0)--(-0.5,0));
+		label("$\rightarrow$",(0.7,0),N);
+		label("$\leftarrow$",(0.7,0),S);
+		label("$\rightarrow$",(-0.7,0),N);
+		label("$\leftarrow$",(-0.7,0),S);
+		\end{asy}
+	\end{wrapfigure}
+	
+	\begin{note}
+		Требование \ref{uslovie:2} на границу $\d D$ является техническим; его можно опустить, но это осложнит доказательство.
+	\end{note}
+	
+	
+	\begin{note}
+		Требование односвязности области $D$ также \\ можно опустить (интегралы по разрезам сократятся: см. рисунок)
+	\end{note}
+	
+	\begin{exmp}
+		Вычислим $J=\int\limits_{x^2+y^2=1} xy^2dy-x^2ydx$.
+	\end{exmp}
+	
+	\begin{solution}
+		$P=-x^2y$; $Q=xy^2 \Rightarrow \dfrac{\d Q}{\d x} = y^2$; $\dfrac{\d P}{\d y} = -x^2$. По формуле Грина: $J = \iint\limits_{x^2+y^2\le1}(y^2+x^2)\,dxdy = \int\limits_0^{2\pi} \int\limits_0^1 r^2 \cdot r dr d\phi = 2\pi\cdot\dfrac{r^4}{4}\Big|_0^1=\dfrac{\pi}{2}$.
+	\end{solution}
+	% заТеХано
+\end{document}

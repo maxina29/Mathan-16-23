@@ -1,0 +1,148 @@
+% заТеХано
+\documentclass[a4paper,10pt]{article}
+
+\include{hat}
+
+\def\jeolmlectnum{16}
+\def\jeolmdate{8 апреля 2019}
+\def\jeolmlectionname{Двойные интегралы}
+\def\jeolmtex{Гл$\epsilon\sigma$ и Ма$\xi$м}
+
+\begin{document}
+	
+	\jeolmnewheader
+	
+	\begin{defn}
+		Пусть функция $f(x, y)$ определена на прямоугольнике \\
+		$R = [a \le x \le b] \times [c \le y \le d]$. Пусть $a = x_0 < x_1 < \ldots < x_n = b$, $c = y_0 < y_1 < \ldots < y_m = d$. Обозначим $\Delta x_k = x_k - x_{k - 1}$, $\Delta y_l = y_l - y_{l - 1}$, $R_{kl} = [x_{k - 1}, x_k] \times [y_{l - 1}, y_l]$; $\Delta_{kl} = \sqrt{(\Delta x_k)^2 + (\Delta y_l)^2}$. Получим (неразмеченное) разбиение $T$ прямоугольника $R$. \\
+		Через $\Delta_T = \max\limits_{\begin{smallmatrix}
+			1 \le k \le n \\
+			1 \le l \le m 
+			\end{smallmatrix}} \Delta_{kl}$ обозначим \textit{диаметр} разбиения $T$. \\
+		Пусть $(\xi_k, \mu_l) \in R_{kl}$, добавленными к нему точками $(\xi_k, \mu_l)$ будем называть \textit{размеченным} разбиением $V$ прямоугольника $R$, соответствующим неразмеченному разбиению $T$; будем полагать $\Delta_V = \Delta_T$. \\
+		Выражение $\sigmaf(V) = \sigma(V) = \sum\limits_{k = 1}^n \sum\limits_{l = 1}^m f(\xi_k, \mu_l) \cdot \Delta x_k \Delta y_l$ будем называть \textit{интегральной суммой} функции $f$ по прямоугольнику $R$, соответствующей разбиению $V$.
+	\end{defn}
+	
+	\begin{defn}
+		Число $I$ называется \textit{двойным интегралом} от функции $f$ \textit{по прямоугольнику} $R$, если оно является пределом интегральных сумм при стремлении $\Delta_V \to 0$, то есть $\forall \epsilon > 0 ~ \exists \delta = \delta(\epsilon) > 0$, такое, что для любого размеченного разбиения $V$ прямоугольника $R$, $\Delta_V <\delta : |I - \sigmaf(V)| < \epsilon$.
+		
+		Обозначается: $\iint\limits_R f(x, y)) \, dxdy$
+	\end{defn}
+	
+	\begin{prop}
+		Если $f(x,y)$ интегрируема по прямоугольнику $R$, то она ограничена на нём.
+	\end{prop}
+	
+	\begin{proof*}
+		аналогично одномерному случаю.
+	\end{proof*}
+	
+	\begin{defn}
+		Обозначим: $$M = \sup\limits_R f(x, y), ~ m = \inf\limits_R f(x, y), ~ M_{k\ell} = \sup\limits_{R_{k\ell}} f(x, y), ~ m_{k\ell} = \inf\limits_{R_{k\ell}} f(x, y)$$
+		(Здесь и далее считаем, что $f$ ограничена на $R$)
+		
+		Выражение $S(T) = \sum\limits_{k = 1}^n \sum\limits_{\ell = 1}^m M_{k\ell} \cdot \Delta x_k \cdot \Delta y_\ell \left( s(T) = \sum\limits_{k = 1}^n \sum\limits_{\ell = 1}^m m_{k\ell} \cdot \Delta x_k \cdot \Delta y_\ell \right)$ называется \textit{верхней (нижней) суммой Дарбу} функции $f$
+	\end{defn}
+	
+	\begin{defn}
+		\textit{Верхним (нижним) интегралом Дарбу} от функции $f$ по прямоугольнику $R$ называется: $$ I^* = \inf\limits_T S(T) ~ \Big( I_* = \sup\limits_T s(T) \Big),$$ где точные грани берутся по всем разбиениям $T$ прямоугольника $R$
+	\end{defn}
+	
+	\begin{proofs*}
+		следующих утверждений полностью аналогичны одномерному случаю
+	\end{proofs*}
+	
+	\begin{lem}
+		$\forall \mspace{1.5mu} V$ --- размеченного разбиения, соответствующего разбиению $T$:$$ s(T) \le \sigma(V) \le S(T)$$
+	\end{lem}
+	
+	\begin{lem}
+		$$ S(T) = \sup\limits_V \, \{ \sigma(V) \},~ s(T) = \inf\limits_V \, \{ \sigma(V) \}, $$
+		где точные грани берутся по всем разметкам $V$ разбиения $T$.
+	\end{lem}
+	
+	\begin{lem}
+		Пусть $T$ --- некоторое разбиение $R$, разбиение $T'$ получено из $T$ добавлением $\ell$ прямых. Тогда:$$ 0 \le S(T) - S(T') \le (M - m) \cdot \Delta_T \cdot \ell \cdot d, $$ $$ 0 \le s(T') - s(T) \le (M - m) \cdot \Delta_T \cdot \ell \cdot d, $$
+		где $d$ --- длина диагонали прямоугольника $R$.
+	\end{lem}
+	
+	\begin{lem}
+		$\forall \mspace{2mu} T_1, T_2$ --- разбиений $R:~s(T_1) \le S(T_2)$.
+	\end{lem}
+	
+	\begin{lem}
+		$\forall$ ограниченной функции $f$ существуют $I_*$ и $I^*$, причём $I_* \le I^*$.
+	\end{lem}
+	
+	\begin{lem}
+		$$ I^* = \!\! \lim\limits_{\Delta_T \to 0} \! S(T), ~ I_* = \!\! \lim\limits_{\Delta_T \to 0} \! s(T), \textup{ то есть} $$
+		$\forall\epsilon>0 ~~ \exists \delta=\delta(\epsilon)>0, $ такое что $\forall \mspace{1.5mu} T$ --- разбиения $R$ с диаметром $\Delta_T < \delta:$ $$ |I^* - S(T)| < \epsilon~ \Big(|I_* - s(T)| < \epsilon\Big) $$
+	\end{lem}
+	
+	\begin{nthm}[Критерий Римана]
+		Функция $f$ интегрируема на прямоугольнике~$R$ $\Leftrightarrow \forall \epsilon > 0 ~~ \exists \mspace{1.5mu} T$ --- разбиение $R$, такое что $S(T) - s(T) < \epsilon$.
+	\end{nthm} 
+	
+	\begin{thm}
+		Если функция $f$ непрерывна на прямоугольнике $R$, то она интегрируема на $R$.
+	\end{thm}
+	
+	\begin{thm}
+		Если $f$ ограничена на $R$, и $\forall \epsilon > 0$ все точки разрыва функции $f$ на $R$ можно покрыть конечным числом прямоугольников суммарной площадью меньше~$\epsilon$, то $f$ интегрируема на $R$. 
+	\end{thm} 
+	
+	\begin{note}
+		Если множество $A\subset \R^2$ таково, что $\forall\epsilon > 0$ оно покрывается конечным числом прямоугольников суммарной площадью меньше $\epsilon$, то $\mathop{S(A)}\limits_\textup{площадь} =~ 0$.
+	\end{note}
+	
+	\hhline
+	
+	Пусть теперь $D\subset \R^2$ --- ограниченная область (открытое линейно связное множество), $\overline{D}$ --- замыкание области $D$, то есть $\overline{D} = D \cup \d D$ ($\d D$ --- граница $D$)
+	
+	\begin{defn}
+		Пусть функция $f$ определена в $\overline{D}$, где $S(\d D) = 0$. Возьмём прямоугольник $R$ такой, что $\overline{D}\subset R$, и обозначим $F(x, y) = \begin{cases} f(x, y), & (x, y) \in \overline{D} \\ 0, & (x, y) \in R \backslash \overline{D} \end{cases}$ \\
+		Функция $f$ \textit{интегрируема в области $D$}, если функция $F$ интегрируема в прямоугольнике $R$, причём по определению: $$ \iint\limits_D f(x, y) \, dx dy = \iint\limits_R F(x, y) \, dx dy $$
+	\end{defn}
+	
+	\begin{prop}
+		$$\iint\limits_D 1 \, dx dy = S(D) $$
+	\end{prop}
+	
+	\begin{proof}
+		Функция $f(x,y) \equiv 1 $ интегрируема в области $D$ согласно опр.~5 и теор.~3 (она ограничена и множество её точек разрыва совпадает с $\d D \Rightarrow$ имеет нулевую площадь)\\
+		Далее, для любого разбиения $T : ~ s(T) = \!\! \mathop{S_*(D)}\limits_{\begin{smallmatrix} \textup{нижняя} \\ \textup{площадь} \end{smallmatrix}} \!\! , ~ S(T) = \!\! \mathop{S^*(D)}\limits_{\begin{smallmatrix} \textup{верхняя} \\ \textup{площадь} \end{smallmatrix}}$ \\
+		$\Rightarrow S(D) = \iint\limits_D 1\, dx dy$
+	\end{proof}
+	
+	\begin{thm}
+		Пусть $f$ ограничена в $\overline{D}$, $A$ --- множество её точек разрыва в $\overline{D}$, $S(A) = 0$. Тогда $f \in R(D)$, то есть $f$ интегрируема по Риману в $D$.
+	\end{thm}
+	
+	\begin{proof}
+		Пусть $B$ --- множество точек разрыва функции $F$ в прямоугольнике $R$ \Bigg(где $F(x, y) = \begin{cases} f(x, y), & (x, y) \in \overline{D} \\ 0, & (x, y) \in R \backslash \overline{D} \end{cases}$\Bigg). Тогда $B \subset A \cup \d D$\\
+		$\Rightarrow S(B) \le \underbrace{S(A)}_{0} + \underbrace{S(\d D)}_{0}\Rightarrow S(B) = 0 \Rightarrow F\in\mathcal{R}(R)$ (по теор.~3) $\Rightarrow f\in \mathcal{R}(D)$  
+	\end{proof}
+	
+	\begin{defn}
+		Пусть $D \subset \R^2$ --- ограниченная область, $S(\d D) = 0$. \\ Предположим, что $\overline{D} = \bigcup\limits_{j = 1}^n \overline{D_j},$ где $D_j$ --- области, $S(\d D_j) = 0, ~ D_j \cap D_i = \nothing,~i \neq j$.\\
+		Обозначим $d_j = \!\!\!\! \sup\limits_{\begin{smallmatrix} M_1 \in \overline{D_j} \\ M_2 \in \overline{D_j} \end{smallmatrix}} \!\!\! \{ \rho(M_1, M_2) \},~\widetilde{\Delta} = \! \max\limits_{1 \le j \le n} \! d_j$ --- \textit{диаметр} разбиения $D$ на области $D_j$.
+		Пусть $P_j \in \overline{D_j}$ --- произвольная точка. Выражение $\sigmaf = \sum\limits_{j = 1}^n f(P_j) \cdot S(D_j)$ называется \textit{интегральной суммой} от функции $f$ в области $D$. Число $I$ называется \textit{интегралом} от функции $f$ в \textit{области $D$}, если $\forall \epsilon > 0 ~ \exists \delta = \delta(\epsilon) > 0$, такое, что для любого разбиения области $D$ областями $D_j$, таких, что $\widetilde{\Delta} < \delta:|\sigmaf - I| < \epsilon$.
+	\end{defn}
+	
+	\begin{thm*}
+		Определения 5 и 6 эквивалентны.
+	\end{thm*}
+	
+	\begin{props*}
+		\item \textit{(аддитивность)}\\
+		Если $\overline{D} = \overline{D_1} \cup \overline{D_2}$, $D_1 \cap D_2 = \nothing$, $S(\d D) = S(\d D_1) = S(\d D_2) = 0$, то $f$~интегрируема в $D \Leftrightarrow f \in \mathcal{R}(D_1)$, $f \in \mathcal{R}(D_2)$, причём $$\iint\limits_D f(x, y) \, dxdy = \iint\limits_{D_1} f(x, y) \, dxdy + \iint\limits_{D_2} f(x, y) \, dxdy$$
+		\item \textit{(линейность)} Если $f, g \in\mathcal{R}(D)$, то\\
+		$$\iint\limits_D(\alpha f(x,y)+\beta g(x,y))\,dxdy = \alpha\iint\limits_D f(x,y)\,dxdy + \beta\iint\limits_D g(x,y)\,dxdy$$
+		\item Если $f,g\in \mathcal{R}(D),$ то $(f\cdot g)\in \mathcal{R}(D)$
+		\item Если $f,g\in \mathcal{R}(D),\, f(x,y)\le g(x,y)~\forall x,y\in D,$ то $$\iint\limits_D f(x,y)\,dxdy \le \iint\limits_D g(x,y)\,dxdy$$
+		\item Если $f\in \mathcal{R}(D),\, |f(x,y)|\in \mathcal{R}(D),$ причем $$\Big|\iint\limits_D f(x,y)\,dxdy\Big|\le \iint\limits_D |f(x,y)|\,dxdy$$
+		\item (теорема о среднем) Пусть $f,g\in \mathcal{R}(D),~M=\sup\limits_D f(x,y),~m=\inf\limits_D f(x,y),$ $g(x,y)\ge 0\,(\le 0)~\forall (x,y)\in D.$ Тогда $\exists\mu\in [m,\,M]:$ $$\iint\limits_D f(x,y)\cdot g (x,y)\, dxdy = \mu \iint\limits_D g(x,y)\,dxdy$$
+		Если, к тому же $f\in C(D),$ то $\exists(\xi,\eta)\in D:~\mu = f(\xi,\eta)$.
+	\end{props*}
+	% заТеХано
+\end{document}

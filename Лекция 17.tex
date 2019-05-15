@@ -1,0 +1,75 @@
+\documentclass[a4paper,10pt]{article}
+
+\include{hat}
+
+\def\jeolmlectnum{17}
+\def\jeolmdate{11 апреля 2019}
+\def\jeolmlectionname{Сведение двойного интеграла к повторному. Тройные интегралы}
+\def\jeolmtex{Ма$\xi$м}
+
+\newcommand{\RNumb}[1]{\uppercase\expandafter{\romannumeral #1\relax}}
+
+\begin{document}
+	
+	\jeolmnewheader
+	
+	\Large\RNumb{1}.\normalsize\quad Пусть функция $f$ интегрируема на прямоугольнике $R = [a, b] \times [c, d]$.
+	
+	\begin{thm}
+		Если $\forall x \in [a, b]$ существует $I(x) = \int\limits_c^d f(x, y) \, dy$, то функция $I(x)$ интегрируема на $[a, b]$ и по определению $\int\limits_a^b \left( \int\limits_c^d f(x, y) \, dy \right) dx$ называется \textit{повторным интегралом}; при этом $\iint\limits_R f(x, y) \, dxdy = \int\limits_a^b \left( \int\limits_c^d f(x, y) \, dy \right) dx$.
+	\end{thm}
+	
+	\begin{proof}
+		Пусть $a = x_0 < x_1 < \ldots < x_n =b$, $c = y_0 < y_1 < \ldots < y_m = d$, $R_{k\ell} = [x_{k - 1}, x_{k}] \times [y_{\ell - 1}, y_\ell]$, $\Delta x_k = x_k - x_{k - 1}$, $\Delta y_\ell = y_{\ell} - y_{\ell - 1}$, $\Delta_{k\ell} = \sqrt{(\Delta x_k)^2 + (\Delta y_\ell)^2}$, $\Delta_T = \max\limits_{\begin{smallmatrix} 1 \le k \le n \\ 1 \le \ell \le m \end{smallmatrix}}$.
+		
+		Обозначим $m_{k\ell} = \inf\limits_{R_{k\ell}} f(x, y)$; $M_{k\ell} = \sup\limits_{R_{k\ell}} f(x, y)$. Пусть $\xi_k \in [x_{k - 1}, x_k]$ --- произвольная точка. Очевидно, что $m_{k\ell} \le f(\xi_k, y) \le M_{k\ell} ~ \forall y \in [y_{\ell - 1}, y_\ell]$.
+		
+		Проинтегрируем это неравенство по $[y_{\ell - 1}, y_\ell] :$
+		$$m_{k\ell} \cdot \Delta y_\ell \le \int\limits_{y_{\ell - 1}}^{y_\ell} f(\xi_k, y) \, dy \le M_{k\ell} \cdot \Delta y_\ell$$
+		$$\Rightarrow \sum\limits_{\ell = 1}^m m_{k\ell} \cdot \Delta y_\ell \le \underbrace{\int\limits_{c}^{d} f(\xi_k, y) \, dy}_{I(\xi_k)} \le \sum\limits_{\ell = 1}^m M_{k\ell} \cdot \Delta y_\ell$$
+		Умножим последнее неравенство на $\Delta x_k$ и просуммируем по $k$ от $1$ до $n$.
+		$$s(T) = \sum\limits_{k = 1}^n \sum\limits_{\ell = 1}^m m_{k\ell} \cdot \Delta x_k \Delta y_\ell \le \!\!\!\!\!\!\!\!\! \underbrace{\sum\limits_{k = 1}^n I(\xi_k) \cdot \Delta x_k}_{\begin{smallmatrix}
+		\textup{интегральная сумма для} \\
+		\textup{функции } I(x) \textup{ на } [a, b]
+		\end{smallmatrix}} \!\!\!\!\!\!\!\!\! \le \sum\limits_{k = 1}^n \sum\limits_{\ell = 1}^m M_{k\ell} \cdot \Delta x_k \Delta y_\ell = S(T)$$
+		Заметим, что при $\Delta_T \to 0 : s(T) \to \iint\limits_R f(x, y) \, dxdy$ и $S(T) \to \iint\limits_R f(x, y) \, dxdy \Rightarrow$ и средняя часть сходится к этому же значению.
+		
+		Получим, что при стремлении $\max\limits_{1 \le k \le n} \Delta x_k \to 0 :$ интегральная сумма для функции $I(x)$ на $[a, b]$ стремится к одному и тому же числу при любом выборе точек $\xi_k \Rightarrow$ функция $I(x) \in \mathcal{R}[a, b]$ и $\int\limits_a^b I(x) \, dx = \iint\limits_R f(x, y) \, dxdy$
+	\end{proof}
+	
+	\Large\RNumb{2}.\normalsize\quad Пусть теперь $f \in \mathcal{R}(D)$, где $D$ --- ограниченная квадрируемая область.
+	
+	\begin{thm}
+		Пусть область $D$ такова, что её проекция на $Ox$ есть отрезок $[a, b]; ~ \forall x_0 \in [a, b]$ прямая $x = x_0$ пересекает границу $\d D$ либо по отрезку $[y_1(x_0), y_2(x_0)]$, либо не более, чем в двух точках: $y_1(x_0), y_2(x_0), y_1(x_0) \le y_2(x_0)$. Если $\forall x \in [a, b]$ функция $f(x, y)$ интегрируема на отрезке $[y_1(x), y_2(x)]$, то существует  $$\int\limits_a^b \left( \int\limits_{y_1(x)}^{y_2(x)} f(x, y) \, dy \right) dx$$ причём этот повторный интеграл совпадает с двойным интегралом $\iint\limits_D f(x, y) \, dxdy$
+	\end{thm}
+	
+	\begin{proof}
+		Возьмём прямоугольник $R = [a, b] \times [c, d]$, такой, что $\overline{D} \subset R$. Положим $F(x, y) = \begin{cases} f(x, y), &(x, y) \in \overline{D} \\ 0, &(x, y) \in \mathcal{R} \backslash \overline{D} \end{cases}$. Так как $f \in \mathcal{R}(D)$, то по определению $F$ интегрируема на прямоугольнике $R$, причём $\iint\limits_D f(x, y) \, dxdy \mathop{=}\limits_{\operatorname{def}} \iint\limits_R F(x, y) \, dxdy =\\= \textup{(т. 1)} = \int\limits_a^b \left( \int\limits_c^d F(x, y) \, dy \right) dx = \int\limits_a^b \left( \int\limits_{y_1(x)}^{y_2(x)} \underbrace{F(x, y)}_{f(x, y) \textup{ в } D} dy \right) dx = \int\limits_a^b \left( \int\limits_{y_1(x)}^{y_2(x)} f(x, y) \, dy \right) dx$
+	\end{proof}
+	
+	\begin{note}
+		Можно доказать теоремы, аналогичные т. 1 и т. 2 для повторных интегралов $\int\limits_c^d \left( \int\limits_{x_1(y)}^{x_2(y)} f(x, y) \, dx \right) dy$
+	\end{note}
+	%дописать
+	
+% thm       Теорема
+% thm*      Теорема (б/д)
+% nthm      Теорема (именная)
+% lem       Лемма
+% defn      Определение
+% prop      Утверждение
+% note      Замечание
+% cor       Следствие
+% exmp      Пример
+% xca       Упражнение
+% Нумерация во всех свойствах через \item
+% props     Свойства
+% nprops    Свойства (с названием)
+% props*    Свойства (б/д)
+% proof     Доказательство
+% proof*    Доказательство без точки и конца доказательства
+% proofs*	Доказательства без точки и конца доказательства
+% noproof	Без доказательства
+% solution  Решение
+
+\end{document}
